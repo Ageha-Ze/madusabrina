@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madu Sabrina - Keaslian Alam Indonesia</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <img src="images/logo.png" alt="Madu Sabrina" class="loading-logo">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Madu Sabrina" class="logo-img">
+                    <span class="logo-text">MADU<br><span>SABRINA</span></span>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">Tentang</a></li>
+                    <li><a href="#products" class="nav-link">Produk</a></li>
+                    <li><a href="#benefits" class="nav-link">Manfaat</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                </ul>
+
+                <div class="nav-right">
+                    <a href="https://wa.me/6289930719991" class="phone-link">
+                        <span class="phone-icon">📞</span>
+                        <span class="phone-number">0899-3071-991</span>
+                    </a>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slide active" style="background-image: url('images/hero1.jpg')">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-subtitle">100% Murni Tanpa Campuran</p>
+                    <h1 class="hero-title">Madu Asli<br>Dari Hutan Indonesia</h1>
+                    <p class="hero-tagline">Keaslian Alam, Kesehatan Keluarga</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slide" style="background-image: url('images/hero2.jpg')">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Langsung Dari Peternak Terpercaya</p>
+                    <h1 class="hero-title">Madu Klanceng<br>Lebah Tanpa Sengat</h1>
+                    <p class="hero-tagline">Keaslian Alam, Kesehatan Keluarga</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slide" style="background-image: url('images/hero3.jpg')">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Dipanen Secara Tradisional</p>
+                    <h1 class="hero-title">Madu Hutan<br>Apis Dorsata</h1>
+                    <p class="hero-tagline">Keaslian Alam, Kesehatan Keluarga</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Navigation -->
+        <div class="hero-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="images/about-honey.jpg" alt="Madu Murni Nusantara">
+                </div>
+                <div class="about-content">
+                    <div class="section-label">TENTANG KAMI</div>
+                    <h2 class="section-title">Menghadirkan Madu Murni Terbaik Nusantara</h2>
+                    <p class="about-text">
+                        Madu Sabrina adalah pelopor dalam menyediakan madu murni berkualitas premium langsung dari
+                        peternak
+                        dan pemanen madu terpercaya di seluruh Indonesia. Setiap tetes madu kami adalah hasil karya
+                        alam yang dijaga keasliannya tanpa proses pemanasan berlebih atau pencampuran.
+                    </p>
+                    <p class="about-text">
+                        Dari hutan lebat Kalimantan hingga pegunungan Jawa, kami memastikan madu yang sampai ke tangan
+                        Anda adalah 100% murni, kaya enzim, dan penuh manfaat kesehatan. Kepercayaan Anda adalah
+                        prioritas kami.
+                    </p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">🐝</div>
+                            <div class="feature-text">
+                                <h4>100% Murni & Alami</h4>
+                                <p>Tanpa campuran gula, air, atau pengawet. Dipanen langsung dari sarang lebah dan
+                                    dikemas
+                                    dengan standar kebersihan tinggi.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🌿</div>
+                            <div class="feature-text">
+                                <h4>Terstandar Kualitas</h4>
+                                <p>Setiap batch madu kami melalui uji kualitas ketat untuk memastikan keaslian, kadar
+                                    air,
+                                    dan kandungan enzim yang optimal.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🏔️</div>
+                            <div class="feature-text">
+                                <h4>Langsung Dari Sumbernya</h4>
+                                <p>Bekerja sama dengan peternak lokal dan pemanen hutan, memastikan madu terbaik dari
+                                    berbagai ekosistem Indonesia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Madu Klanceng Banner -->
+    <section class="klanceng-banner">
+        <div class="klanceng-banner-slide active" style="background-image: url('images/klc-about.jpg')">
+            <div class="klanceng-banner-overlay"></div>
+            <div class="klanceng-banner-content">
+                <h2 class="klanceng-banner-title">Madu Klanceng Trigona</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Madu Klanceng Section -->
+    <section id="klanceng" class="klanceng-section">
+        <div class="container">
+            <div class="klanceng-grid">
+                <div class="klanceng-content">
+                    <div class="section-label">MADU KLANCENG</div>
+                    <h2 class="section-title">Keajaiban Madu Klanceng Trigona</h2>
+                    <p class="about-text">
+                        Madu Klanceng adalah jenis madu langka yang dihasilkan oleh lebah Trigona (lebah tanpa sengat).
+                        Berbeda dengan lebah Apis yang umum dikenal, lebah Trigona memiliki ukuran yang lebih kecil dan
+                        hidup di dalam batang pohon atau tempat-tempat tersembunyi. Madu ini memiliki kandungan
+                        bioaktif yang sangat tinggi dan manfaat kesehatan yang luar biasa.
+                    </p>
+                    <p class="about-text">
+                        Madu Klanceng dikenal sebagai "madu obat" karena khasiatnya yang luar biasa dalam menyembuhkan
+                        berbagai penyakit. Teksturnya yang lebih cair dan rasa asam segar membuatnya unik dibandingkan
+                        jenis madu lainnya. Kandungan propolis alami yang tinggi menjadikannya pilihan terbaik untuk
+                        meningkatkan daya tahan tubuh.
+                    </p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">🔬</div>
+                            <div class="feature-text">
+                                <h4>Kandungan Enzim Tinggi</h4>
+                                <p>Madu Klanceng mengandung enzim alami dalam jumlah yang jauh lebih tinggi
+                                    dibandingkan madu biasa, sangat baik untuk sistem pencernaan dan metabolisme tubuh.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🛡️</div>
+                            <div class="feature-text">
+                                <h4>Imunitas Super</h4>
+                                <p>Kaya akan antioksidan dan antibakteri alami yang memperkuat sistem kekebalan
+                                    tubuh secara alami.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🍯</div>
+                            <div class="feature-text">
+                                <h4>Propolis Alami</h4>
+                                <p>Mengandung propolis alami dalam jumlah besar, membantu penyembuhan luka dan
+                                    infeksi secara cepat.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🌿</div>
+                            <div class="feature-text">
+                                <h4>100% Organik</h4>
+                                <p>Dipanen secara alami tanpa campur tangan manusia, menjaga kemurnian dan
+                                    khasiat alaminya.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="klanceng-image">
+                    <img src="images/klc250.png" alt="Madu Klanceng">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">KOLEKSI PREMIUM</div>
+                <h2 class="section-title">Pilihan Madu Terbaik Kami</h2>
+            </div>
+
+            <!-- Premium Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">🌟 Koleksi Premium</h3>
+                    <p class="category-desc">Madu langka dengan khasiat luar biasa</p>
+                </div>
+
+                <div class="product-grid" id="premium-products">
+                    <!-- Premium products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Regular Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">🍯 Seri Apis Mellifera</h3>
+                    <p class="category-desc">Madu berkualitas dari lebah ternak pilihan</p>
+                </div>
+
+                <div class="product-grid" id="regular-products">
+                    <!-- Regular products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Lite Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">🍯 Seri Madu Kemasan Kecil</h3>
+                    <p class="category-desc">Madu berkualitas dari lebah pilihan</p>
+                </div>
+
+                <div class="product-grid" id="lite-products">
+                    <!-- Regular products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <!-- Necropolis Section -->
+    <section id="necropolis" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="images/nec.png" alt="Necropolis Propolis">
+                    <button class="btn-primary" onclick="addToCartFromNecropolis()"
+                        style="margin-top: 20px; width: 100%; padding: 15px; font-size: 16px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 10px;">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                        Pesan Necropolis
+                    </button>
+                </div>
+                <div class="about-content">
+                    <div class="section-label">NECROPOLIS</div>
+                    <h2 class="section-title">Propolis Trigona Raw - Kekuatan Alam yang Mengguncang</h2>
+                    <p class="about-text">
+                        Necropolis adalah propolis Trigona Raw paling intens yang pernah ada. Dibuat langsung dari
+                        sarang
+                        lebah Trigona tanpa proses pemanasan atau pengenceran, menjadikannya propolis paling murni dan
+                        paling kuat di dunia.
+                    </p>
+                    <p class="about-text">
+                        Setiap tetes Necropolis adalah pekatnya kekuatan alam yang terkonsentrasi. Rasa panasnya
+                        mengguncang lidah, tenggorokan, dan lambung dengan intensitas yang tak tertandingi. Ini bukan
+                        sekadar propolis biasa - ini adalah senjata alami untuk melawan penyakit dan memperkuat tubuh
+                        hingga batas maksimal.
+                    </p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">🔥</div>
+                            <div class="feature-text">
+                                <h4>Panas Intens</h4>
+                                <p>Rasa panas yang mengguncang dari lidah hingga lambung, membakar kuman dan bakteri
+                                    secara instan.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-text">
+                                <h4>Energi Super</h4>
+                                <p>Meningkatkan energi tubuh secara drastis, memberikan kekuatan ekstra untuk melawan
+                                    penyakit.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">🛡️</div>
+                            <div class="feature-text">
+                                <h4>Pertahanan Super</h4>
+                                <p>Meningkatkan sistem kekebalan tubuh hingga level tertinggi, melindungi dari segala
+                                    jenis infeksi.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">💥</div>
+                            <div class="feature-text">
+                                <h4>Konsentrasi Maksimal</h4>
+                                <p>Propolis paling pekat dan paling murni, tanpa campuran air atau proses pemanasan
+                                    yang merusak khasiat alami.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">MANFAAT KESEHATAN</div>
+                <h2 class="section-title">Keajaiban Madu Untuk Tubuh</h2>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💪</div>
+                    <h4>Meningkatkan Imunitas</h4>
+                    <p>Kaya antioksidan dan antibakteri alami yang memperkuat sistem kekebalan tubuh.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Sumber Energi Alami</h4>
+                    <p>Gula alami yang mudah diserap tubuh, memberikan energi instant tanpa efek samping.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">❤️</div>
+                    <h4>Menjaga Kesehatan Jantung</h4>
+                    <p>Membantu menurunkan tekanan darah dan kolesterol, melindungi kesehatan kardiovaskular.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🩹</div>
+                    <h4>Mempercepat Penyembuhan</h4>
+                    <p>Sifat antiseptik membantu penyembuhan luka, luka bakar, dan infeksi kulit.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌙</div>
+                    <h4>Meningkatkan Kualitas Tidur</h4>
+                    <p>Membantu produksi melatonin untuk tidur yang lebih nyenyak dan berkualitas.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h4>Meningkatkan Fungsi Otak</h4>
+                    <p>Nutrisi yang mendukung kesehatan otak dan meningkatkan daya ingat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section id="order" class="order-section">
+        <div class="container">
+            <div class="order-header">
+                <h2>Keranjang Belanja</h2>
+            </div>
+
+            <div class="order-content">
+                <div class="order-form">
+                    <h3>Detail Pemesanan</h3>
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" id="order-name" placeholder="Masukkan nama Anda">
+                    </div>
+                    <div class="form-group">
+                        <label>No. WhatsApp</label>
+                        <input type="tel" id="order-phone" placeholder="08xx xxxx xxxx">
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat Lengkap</label>
+                        <textarea id="order-address" rows="3"
+                            placeholder="Jalan, Kelurahan, Kecamatan, Kota, Provinsi"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Catatan (Opsional)</label>
+                        <textarea id="order-notes" rows="2"
+                            placeholder="Tambahkan catatan untuk pesanan Anda"></textarea>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <h3>Ringkasan Pesanan</h3>
+                    <div id="cart-items">
+                        <!-- Cart items will be inserted here -->
+                    </div>
+                    <div id="empty-cart-message" class="empty-cart">
+                        <p>Keranjang belanja masih kosong</p>
+                        <p>Pilih produk yang Anda inginkan</p>
+                    </div>
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cart-total">Rp 0</span>
+                    </div>
+                    <button class="btn-order" onclick="sendOrderViaWhatsApp()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
+                        Pesan Via WhatsApp
+                    </button>
+                    <button class="btn-clear" onclick="clearCart()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                        </svg>
+                        Kosongkan Keranjang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-product-name">Detail Produk</h3>
+                <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-product-image" src="" alt="Product Image">
+                </div>
+                <div class="modal-details">
+                    <p id="modal-product-description">Deskripsi produk</p>
+                    <div class="quantity-control">
+                        <label>Jumlah:</label>
+                        <div class="quantity-buttons">
+                            <button onclick="changeQuantity(-1)">-</button>
+                            <span id="modal-quantity">1</span>
+                            <button onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    <div class="price-total">
+                        <span>Harga:</span>
+                        <span id="modal-total-price">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeOrderModal()">Batal</button>
+                <button class="btn-primary" onclick="addToCart()">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">GALLERY</div>
+                <h2 class="section-title">Koleksi Gambar Kami</h2>
+            </div>
+        </div>
+        <div class="container-full">
+            <div class="gallery-grid">
+                <div class="gallery-item gallery-tall">
+                    <img src="images/gallery1.jpg" alt="Gallery 1">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-tall">
+                    <img src="images/gallery2.jpg" alt="Gallery 2">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery3.jpg" alt="Gallery 3">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery4.jpg" alt="Gallery 4">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery5.jpg" alt="Gallery 5">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="gallery-item gallery-wide">
+                    <img src="images/gallery6.jpg" alt="Gallery 6">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery7.jpg" alt="Gallery 7">
+                    <div class="gallery-overlay">
+                        <span class="gallery-icon">🔍</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Madu Sabrina">
+                        <h3>MADU SABRINA</h3>
+                    </div>
+                    <p class="footer-text">
+                        Menyediakan madu murni berkualitas premium langsung dari peternak dan
+                        hutan Indonesia. Keaslian terjamin, kesehatan terjaga.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Hubungi Kami</h4>
+                    <div class="contact-info">
+                        <p>📍 Gg Sadewa 191, Jl. Parangtritis Km.10<br>Rendeng Kulon, Sewon, Bantul</p>
+                        <p>📧 madusabrinaid@gmail.com</p>
+                        <p>📞 0899-3071-991</p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Jam Operasional</h4>
+                    <div class="working-hours">
+                        <p><span>Senin - Jumat</span> <span>09:00 - 17:00</span></p>
+                        <p><span>Sabtu</span> <span>09:00 - 15:00</span></p>
+                        <p><span>Minggu</span> <span>Libur</span></p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Social Media</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/madu.sabrina" class="social-link">📷 Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2024 Madu Sabrina. All Rights Reserved.</p>
+                <p>Open jasa pembuatan website langsung melalui <a
+                        href="https://wa.me/628993071991?text=Halo%20Nusabit.com,%20saya%20ingin%20dibuatkan%20Website%20dong"
+                        target="_blank" style="color: #C9A961; text-decoration: none; font-weight: 500;">kami</a>
+                    atau masuk ke <a href="https://nusabit.com" target="_blank"
+                        style="color: #C9A961; text-decoration: none; font-weight: 500;">Nusabit.com</a> </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6289930719991" class="whatsapp-float" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
