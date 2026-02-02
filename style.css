@@ -567,6 +567,31 @@ body.loaded .loading-screen {
     line-height: 1.6;
 }
 
+/* Media Query untuk Mobile (Layar di bawah 768px) */
+@media (max-width: 768px) {
+    .klanceng-grid {
+        /* Ubah jadi 1 kolom saja */
+        grid-template-columns: 1fr;
+        gap: 30px;
+        /* Perkecil jarak antar elemen agar tidak terlalu jauh */
+    }
+
+    .klanceng-image {
+        /* Memastikan gambar muncul paling atas */
+        order: 1;
+    }
+
+    .klanceng-content {
+        /* Teks muncul di bawah gambar */
+        order: 2;
+    }
+
+    .section-title {
+        font-size: 32px;
+        /* Perkecil sedikit ukuran font judul di mobile */
+    }
+}
+
 /* ========== PRODUCTS SECTION ========== */
 .products-section {
     padding: 120px 0;
