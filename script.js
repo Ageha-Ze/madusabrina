@@ -250,7 +250,7 @@ function initHamburger() {
     });
 }
 
-// Hero Slider
+// fek Slider
 function initHeroSlider() {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.hero-slide');
@@ -309,16 +309,10 @@ function initScrollAnimation() {
         observer.observe(el);
     });
 
-    // Parallax effect for banner
-    const banner = document.querySelector('.klanceng-banner-slide');
-    if (banner) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            banner.style.transform = `translateY(${rate}px)`;
-        });
-    }
+
 }
+
+
 
 // Gallery Lightbox
 const galleryItems = document.querySelectorAll('.gallery-item');
@@ -528,7 +522,7 @@ window.clearCart = function () {
     if (confirm('Yakin ingin mengosongkan keranjang?')) {
         cart = [];
         updateCartDisplay();
-        
+
         // Kosongkan form detail pemesanan
         document.getElementById('order-name').value = '';
         document.getElementById('order-phone').value = '';

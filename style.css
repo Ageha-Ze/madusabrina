@@ -283,7 +283,8 @@ body.loaded .loading-screen {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
+    background-attachment: fixed;
     opacity: 0;
     transition: opacity 1s ease-in-out;
 }
@@ -394,13 +395,12 @@ body.loaded .loading-screen {
     box-shadow: 0 20px 60px var(--shadow);
 }
 
-/* ========== MADU KLANCENG BANNER ========== */
+/* ========== MADU KLANCENG BANNER - SAMA SEPERTI HERO ========== */
 .klanceng-banner {
     position: relative;
-    height: 600px;
+    height: 80vh;
+    min-height: 500px;
     overflow: hidden;
-    background-color: var(--deep-brown);
-    background-attachment: fixed;
 }
 
 .klanceng-banner-slide {
@@ -410,12 +410,9 @@ body.loaded .loading-screen {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out, transform 1.5s ease-out;
-}
-
-.klanceng-banner-slide.active {
+    background-position: center center;
+    background-attachment: fixed;
+    /* INI yang bikin parallax otomatis kayak hero */
     opacity: 1;
 }
 
@@ -425,7 +422,7 @@ body.loaded .loading-screen {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(45, 31, 20, 0.7) 0%, rgba(74, 56, 40, 0.5) 100%);
+    background: linear-gradient(135deg, rgba(45, 31, 20, 0.6) 0%, rgba(74, 56, 40, 0.4) 100%);
 }
 
 /* Banner title with decorative lines */
@@ -436,16 +433,18 @@ body.loaded .loading-screen {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
 }
 
 .klanceng-banner-title {
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
+    font-size: clamp(32px, 5vw, 48px);
     font-weight: 700;
     color: var(--white);
     line-height: 1.2;
     margin: 0;
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
 }
 
 /* Decorative lines around title */
@@ -457,18 +456,25 @@ body.loaded .loading-screen {
     height: 3px;
     background: var(--honey-gold);
     margin: 25px auto;
-    animation: fadeInUp 1s ease 0.3s both, expandWidth 1.2s ease 0.5s both;
 }
 
-@keyframes expandWidth {
-    from {
-        width: 0;
-        opacity: 0;
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .klanceng-banner {
+        height: 60vh;
+        min-height: 400px;
     }
 
-    to {
-        width: 80px;
-        opacity: 1;
+    /* Di mobile, background-attachment fixed kadang bermasalah, jadi dinonaktifkan */
+    .klanceng-banner-slide {
+        background-attachment: scroll;
+    }
+
+    .klanceng-banner-title::before,
+    .klanceng-banner-title::after {
+        width: 60px;
+        height: 2px;
+        margin: 20px auto;
     }
 }
 
@@ -703,6 +709,89 @@ body.loaded .loading-screen {
     color: var(--deep-brown);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px var(--shadow-dark);
+}
+
+/* ========== Necropolis BANNER - SAMA SEPERTI HERO ========== */
+.necro-banner {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.necro-banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    /* INI yang bikin parallax otomatis kayak hero */
+    opacity: 1;
+}
+
+.necro-banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(62, 39, 35, 0.50) 0%, rgba(107, 68, 35, 0.50) 100%);
+}
+
+/* Banner title with decorative lines */
+.necro-banner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.necro-banner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin: 0;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+/* Decorative lines around title */
+.necro-banner-title::before,
+.necro-banner-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--honey-gold);
+    margin: 25px auto;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .necro-banner {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    /* Di mobile, background-attachment fixed kadang bermasalah, jadi dinonaktifkan */
+    .necro-banner-slide {
+        background-attachment: scroll;
+    }
+
+    .necro-banner-title::before,
+    .necro-banner-title::after {
+        width: 60px;
+        height: 2px;
+        margin: 20px auto;
+    }
 }
 
 /* ========== BENEFITS SECTION ========== */
@@ -1521,6 +1610,11 @@ body.loaded .loading-screen {
         padding: 60px 0;
         background-attachment: scroll;
         /* Disable parallax on mobile for performance */
+    }
+
+    .klanceng-banner-slide {
+        background-attachment: scroll;
+        background-position: center center;
     }
 
     .klanceng-banner-title {
