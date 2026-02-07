@@ -8,7 +8,7 @@ const products = {
         {
             id: 1,
             name: 'Madu Klanceng',
-            price: 350000,
+            price: 270000,
             unit: '1000gr',
             image: 'images/klanceng.jpg',
             description: 'Madu dari lebah Stingless Bee (Trigona sp.) yang tidak memiliki sengat. Dipanen dari sarang lebah kecil yang hidup di dalam batang pohon. Teksturnya lebih cair dengan rasa asam segar khas, kaya akan propolis alami. Kandungan enzim dan antioksidannya sangat tinggi, cocok untuk meningkatkan daya tahan tubuh dan mengatasi berbagai penyakit.',
@@ -20,7 +20,7 @@ const products = {
             price: 250000,
             unit: '1000gr',
             image: 'images/hutan.jpg',
-            description: 'Madu murni dari lebah Apis Dorsata yang bersarang di pohon-pohon tinggi hutan Kalimantan. Dipanen secara tradisional oleh para pemanjat pohon ahli. Rasa lebih kuat dan kompleks dengan aroma bunga hutan yang khas. Mengandung berbagai nektar dari ratusan jenis bunga liar, memberikan manfaat kesehatan yang luar biasa lengkap.',
+            description: 'Madu murni dari lebah Apis Dorsata yang bersarang di pohon-pohon tinggi hutan Sumatra. Dipanen secara tradisional oleh para pemanjat pohon ahli. Rasa lebih kuat dan kompleks dengan aroma bunga hutan yang khas. Mengandung berbagai nektar dari ratusan jenis bunga liar, memberikan manfaat kesehatan yang luar biasa lengkap.',
             category: 'premium'
         }
     ],
@@ -66,7 +66,7 @@ const products = {
         {
             id: 7,
             name: 'Madu Klanceng',
-            price: 40000,
+            price: 55000,
             unit: '180gr',
             image: 'images/klc.jpg',
             description: 'Madu dari lebah Stingless Bee (Trigona sp.) yang tidak memiliki sengat. Dipanen dari sarang lebah kecil yang hidup di dalam batang pohon. Teksturnya lebih cair dengan rasa asam segar khas, kaya akan propolis alami. Kandungan enzim dan antioksidannya sangat tinggi, cocok untuk meningkatkan daya tahan tubuh dan mengatasi berbagai penyakit.',
@@ -75,7 +75,7 @@ const products = {
         {
             id: 8,
             name: 'Madu Klanceng',
-            price: 125000,
+            price: 135000,
             unit: '500gr',
             image: 'images/klc500.jpg',
             description: 'Madu dari lebah Stingless Bee (Trigona sp.) yang tidak memiliki sengat. Dipanen dari sarang lebah kecil yang hidup di dalam batang pohon. Teksturnya lebih cair dengan rasa asam segar khas, kaya akan propolis alami. Kandungan enzim dan antioksidannya sangat tinggi, cocok untuk meningkatkan daya tahan tubuh dan mengatasi berbagai penyakit.',
@@ -87,7 +87,7 @@ const products = {
             price: 75000,
             unit: '200ml',
             image: 'images/klc250.png',
-            description: 'Madu dari lebah Stingless Bee (Trigona sp.) yang tidak memiliki sengat. Dipanen dari sarang lebah kecil yang hidup di dalam batang pohon. Teksturnya lebih cair dengan rasa asam segar khas, kaya akan propolis alami. Kandungan enzim dan antioksidannya sangat tinggi, cocok untuk meningkatkan daya tahan tubuh dan mengatasi berbagai penyakit.',
+            description: 'Khusus kemasan kaca dari Madu dari lebah Stingless Bee (Trigona sp.) yang tidak memiliki sengat. Dipanen dari sarang lebah kecil yang hidup di dalam batang pohon. Teksturnya lebih cair dengan rasa asam segar khas, kaya akan propolis alami. Kandungan enzim dan antioksidannya sangat tinggi, cocok untuk meningkatkan daya tahan tubuh dan mengatasi berbagai penyakit.',
             category: 'lite'
         },
         {
@@ -116,11 +116,20 @@ const products = {
             image: 'images/ac.jpg',
             description: 'Madu monofloral dari bunga Akasia Crassicarpa yang tumbuh di perkebunan dataran rendah. Warna cerah keemasan dengan tekstur yang jernih. Rasa manis lembut dengan sedikit sentuhan floral yang menyegarkan. Tidak mudah mengkristal, cocok sebagai pemanis alami untuk teh dan minuman. Baik untuk kesehatan pencernaan dan detoksifikasi tubuh.',
             category: 'lite'
+        },
+        {
+            id: 13,
+            name: 'Madu Hutan Liar',
+            price: 50000,
+            unit: '180gr',
+            image: 'images/hutan180.jpg',
+            description: 'Madu murni dari lebah Apis Dorsata yang bersarang di pohon-pohon tinggi hutan Sumatra. Dipanen secara tradisional oleh para pemanjat pohon ahli. Rasa lebih kuat dan kompleks dengan aroma bunga hutan yang khas. Mengandung berbagai nektar dari ratusan jenis bunga liar, memberikan manfaat kesehatan yang luar biasa lengkap.',
+            category: 'lite'
         }
     ],
     necropolis: [
         {
-            id: 13,
+            id: 14,
             name: 'NECROPOLIS - Propolis Trigona Raw',
             price: 150000,
             unit: '10ml',
@@ -533,8 +542,8 @@ window.clearCart = function () {
 
 // Fungsi untuk menambahkan Necropolis ke keranjang dari tombol di section Necropolis
 function addToCartFromNecropolis() {
-    // Buka modal dengan produk Necropolis (ID 13)
-    openOrderModal(13);
+    // Buka modal dengan produk Necropolis (ID 14)
+    openOrderModal(14);
 }
 
 window.sendOrderViaWhatsApp = function () {
