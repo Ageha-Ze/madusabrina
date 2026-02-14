@@ -252,6 +252,11 @@ function initNavigation() {
 function initHamburger() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+    
+    // Check if hamburger elements exist
+    if (!hamburger || !navMenu) {
+        return;
+    }
 
     hamburger.addEventListener('click', function () {
         navMenu.classList.toggle('active');
@@ -266,13 +271,27 @@ function initHamburger() {
             hamburger.classList.remove('active');
         });
     });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (e) {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+    });
 }
 
-// fek Slider
+// Hero Slider
 function initHeroSlider() {
-    let currentSlide = 0;
+    // Check if hero elements exist (only available in index.html)
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.dot');
+    
+    if (slides.length === 0 || dots.length === 0) {
+        return;
+    }
+
+    let currentSlide = 0;
 
     function showSlide(index) {
         slides.forEach(slide => {
@@ -369,28 +388,36 @@ function renderProducts() {
     const necropolisContainer = document.getElementById('necropolis-products');
 
     // Render Premium Products
-    products.premium.forEach(product => {
-        const productCard = createProductCard(product);
-        premiumContainer.appendChild(productCard);
-    });
+    if (premiumContainer) {
+        products.premium.forEach(product => {
+            const productCard = createProductCard(product);
+            premiumContainer.appendChild(productCard);
+        });
+    }
 
     // Render Regular Products
-    products.regular.forEach(product => {
-        const productCard = createProductCard(product);
-        regularContainer.appendChild(productCard);
-    });
+    if (regularContainer) {
+        products.regular.forEach(product => {
+            const productCard = createProductCard(product);
+            regularContainer.appendChild(productCard);
+        });
+    }
 
     // Render Lite Products
-    products.lite.forEach(product => {
-        const productCard = createProductCard(product);
-        liteContainer.appendChild(productCard);
-    });
+    if (liteContainer) {
+        products.lite.forEach(product => {
+            const productCard = createProductCard(product);
+            liteContainer.appendChild(productCard);
+        });
+    }
 
     // Render Necropolis Products
-    products.necropolis.forEach(product => {
-        const productCard = createProductCard(product);
-        necropolisContainer.appendChild(productCard);
-    });
+    if (necropolisContainer) {
+        products.necropolis.forEach(product => {
+            const productCard = createProductCard(product);
+            necropolisContainer.appendChild(productCard);
+        });
+    }
 }
 
 function createProductCard(product) {
@@ -477,6 +504,11 @@ function updateCartDisplay() {
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotalDisplay = document.getElementById('cart-total');
     const emptyCartMessage = document.getElementById('empty-cart-message');
+
+    // Check if cart containers exist (only available in index.html)
+    if (!cartItemsContainer || !cartTotalDisplay || !emptyCartMessage) {
+        return;
+    }
 
     cartItemsContainer.innerHTML = '';
 

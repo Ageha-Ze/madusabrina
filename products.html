@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk Kami - Madu Sabrina</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <img src="images/logo.png" alt="Madu Sabrina" class="loading-logo">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header" class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Madu Sabrina" class="logo-img">
+                    <span class="logo-text">MADU<br><span>SABRINA</span></span>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">Tentang</a></li>
+                    <li><a href="products.html" class="nav-link active">Produk</a></li>
+                    <li><a href="index.html#benefits" class="nav-link">Manfaat</a></li>
+                    <li><a href="index.html#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Kontak</a></li>
+                </ul>
+
+                <div class="nav-right">
+                    <a href="https://wa.me/6289930719991" class="phone-link">
+                        <span class="phone-icon">📞</span>
+                        <span class="phone-number">0899-3071-991</span>
+                    </a>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">SEMUA PRODUK</div>
+                <h2 class="section-title">Koleksi Premium Madu Sabrina</h2>
+            </div>
+
+            <!-- Premium Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <div class="back-button-container">
+                        <button class="back-button" onclick="history.back()">
+                            ← Kembali
+                        </button>
+                    </div>
+                    <h3 class="category-title">🌟 KOLEKSI PREMIUM</h3>
+                    <p class="category-desc">Madu langka dengan khasiat luar biasa</p>
+                </div>
+
+                <div class="product-grid" id="premium-products">
+                    <!-- Premium products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Regular Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">🍯 SERI APIS MELLIFERA</h3>
+                    <p class="category-desc">Madu berkualitas dari lebah ternak pilihan</p>
+                </div>
+
+                <div class="product-grid" id="regular-products">
+                    <!-- Regular products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Lite Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">🍯 SERI MADU KEMASAN KECIL</h3>
+                    <p class="category-desc">Madu berkualitas dari lebah pilihan</p>
+                </div>
+
+                <div class="product-grid" id="lite-products">
+                    <!-- Lite products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Kids Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">👶 SERI ANAK-ANAK</h3>
+                    <p class="category-desc">Madu khusus untuk pertumbuhan sehat anak</p>
+                </div>
+
+                <div class="product-grid" id="kids-products">
+                    <!-- Kids products will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Necropolis Collection -->
+            <div class="product-category">
+                <div class="category-header">
+                    <h3 class="category-title">🔥 NECROPOLIS</h3>
+                    <p class="category-desc">Propolis Trigona Raw - Kekuatan Alam yang Mengguncang</p>
+                </div>
+
+                <div class="product-grid" id="necropolis-products">
+                    <!-- Necropolis products will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-product-name">Detail Produk</h3>
+                <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-product-image" src="" alt="Product Image">
+                </div>
+                <div class="modal-details">
+                    <p id="modal-product-description">Deskripsi produk</p>
+                    <div class="quantity-control">
+                        <label>Jumlah:</label>
+                        <div class="quantity-buttons">
+                            <button onclick="changeQuantity(-1)">-</button>
+                            <span id="modal-quantity">1</span>
+                            <button onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                    <div class="price-total">
+                        <span>Harga:</span>
+                        <span id="modal-total-price">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeOrderModal()">Batal</button>
+                <button class="btn-primary" onclick="addToCart()">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Madu Sabrina">
+                        <h3>MADU SABRINA</h3>
+                    </div>
+                    <p class="footer-text">
+                        Menyediakan madu murni berkualitas premium langsung dari peternak dan
+                        hutan Indonesia. Keaslian terjamin, kesehatan terjaga.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Hubungi Kami</h4>
+                    <div class="contact-info">
+                        <p>📍 Gg Sadewa 191, Jl. Parangtritis Km.10<br>Rendeng Kulon, Sewon, Bantul</p>
+                        <p>📧 madusabrinaid@gmail.com</p>
+                        <p>📞 0899-3071-991</p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Jam Operasional</h4>
+                    <div class="working-hours">
+                        <p><span>Senin - Jumat</span> <span>09:00 - 17:00</span></p>
+                        <p><span>Sabtu</span> <span>09:00 - 15:00</span></p>
+                        <p><span>Minggu</span> <span>Libur</span></p>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="footer-title">Social Media</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/madu.sabrina" class="social-link">📷 Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2024 Madu Sabrina. All Rights Reserved.</p>
+                <p>Open jasa pembuatan website langsung melalui <a
+                        href="https://wa.me/628993071991?text=Halo%20Nusabit.com,%20saya%20ingin%20dibuatkan%20Website%20dong"
+                        target="_blank" style="color: #C9A961; text-decoration: none; font-weight: 500;">kami</a>
+                    atau masuk ke <a href="https://nusabit.com" target="_blank"
+                        style="color: #C9A961; text-decoration: none; font-weight: 500;">Nusabit.com</a> </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6289930719991" class="whatsapp-float" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        // Override the renderProducts function for products.html
+        function renderProducts() {
+            const premiumContainer = document.getElementById('premium-products');
+            const regularContainer = document.getElementById('regular-products');
+            const liteContainer = document.getElementById('lite-products');
+            const kidsContainer = document.getElementById('kids-products');
+            const necropolisContainer = document.getElementById('necropolis-products');
+
+            // Clear all containers first
+            premiumContainer.innerHTML = '';
+            regularContainer.innerHTML = '';
+            liteContainer.innerHTML = '';
+            kidsContainer.innerHTML = '';
+            necropolisContainer.innerHTML = '';
+
+            // Render Premium Products
+            products.premium.forEach(product => {
+                const productCard = createProductCard(product);
+                premiumContainer.appendChild(productCard);
+            });
+
+            // Render Regular Products
+            products.regular.forEach(product => {
+                const productCard = createProductCard(product);
+                regularContainer.appendChild(productCard);
+            });
+
+            // Render Lite Products (excluding kids)
+            products.lite.filter(p => p.category !== 'kids').forEach(product => {
+                const productCard = createProductCard(product);
+                liteContainer.appendChild(productCard);
+            });
+
+            // Render Kids Products
+            products.lite.filter(p => p.category === 'kids').forEach(product => {
+                const productCard = createProductCard(product);
+                kidsContainer.appendChild(productCard);
+            });
+
+            // Render Necropolis Products
+            products.necropolis.forEach(product => {
+                const productCard = createProductCard(product);
+                necropolisContainer.appendChild(productCard);
+            });
+        }
+
+        // Override createProductCard function for products.html
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                    ${product.category === 'premium' ? '<div class="product-badge">Premium</div>' : ''}
+                    ${product.category === 'necropolis' ? '<div class="product-badge" style="background-color: #8B0000;">Necropolis</div>' : ''}
+                    ${product.category === 'kids' ? '<div class="product-badge" style="background-color: #FF6B6B;">Kids</div>' : ''}
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">${product.name}</h4>
+                    <p class="product-unit">${product.unit}</p>
+                    <p class="product-description">${product.description.substring(0, 120)}...</p>
+                    <div class="product-footer">
+                        <div class="product-price">${formatRupiah(product.price)}</div>
+                        <button class="btn-add-cart" onclick="openOrderModal(${product.id})">
+                            Pesan
+                        </button>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize loading screen
+            initLoadingScreen();
+
+            // Initialize other components
+            initNavigation();
+            initHamburger();
+            initScrollAnimation();
+            renderProducts();
+            updateCartDisplay();
+        });
+    </script>
+</body>
+
+</html>

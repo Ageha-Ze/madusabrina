@@ -215,6 +215,8 @@ body.loaded .loading-screen {
     display: flex;
     align-items: center;
     gap: 20px;
+    position: relative;
+    z-index: 1002;
 }
 
 .phone-link {
@@ -246,7 +248,8 @@ body.loaded .loading-screen {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1003;
+    position: relative;
 }
 
 .hamburger span {
@@ -267,6 +270,158 @@ body.loaded .loading-screen {
 
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: var(--deep-brown);
+        flex-direction: column;
+        padding: 100px 40px;
+        gap: 30px;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 20px var(--shadow-dark);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--honey-gold);
+        transform: translateX(10px);
+        border-color: var(--honey-gold);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .phone-link {
+        display: none;
+    }
+}
+
+/* Navbar transparency fix for products.html */
+.site-header {
+    background-color: rgba(45, 31, 20, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.site-header.scrolled {
+    background-color: rgba(45, 31, 20, 0.95) !important;
+}
+
+/* Mobile Navigation for very small screens */
+@media (max-width: 480px) {
+    .nav-menu {
+        width: 260px;
+        padding: 80px 30px;
+    }
+
+    .nav-link {
+        font-size: 16px;
+        padding: 8px 0;
+    }
+}
+
+/* Mobile Navigation for 340px screens */
+@media (max-width: 340px) {
+    .nav-menu {
+        width: 240px;
+        padding: 60px 20px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+        padding: 6px 0;
+    }
+}
+
+/* Back Button for Mobile Screens */
+.back-button-container {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background-color: var(--dark-brown);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 2px solid var(--dark-brown);
+}
+
+.back-button:hover {
+    background-color: var(--honey-gold);
+    color: var(--deep-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--shadow-dark);
+}
+
+.back-button i {
+    font-size: 16px;
+}
+
+/* Show back button only on mobile screens */
+@media (max-width: 768px) {
+    .back-button-container {
+        display: block;
+    }
+    
+    .category-header {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .category-title,
+    .category-desc {
+        margin: 0;
+    }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 480px) {
+    .back-button {
+        font-size: 13px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 340px) {
+    .back-button {
+        font-size: 12px;
+        padding: 8px 14px;
+    }
 }
 
 /* ========== HERO SECTION ========== */
@@ -590,7 +745,9 @@ body.loaded .loading-screen {
         font-size: 32px;
         /* Perkecil sedikit ukuran font judul di mobile */
     }
-}g
+}
+
+g
 
 /* ========== PRODUCTS SECTION ========== */
 .products-section {
@@ -629,6 +786,28 @@ body.loaded .loading-screen {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
+}
+
+/* Fix for single item grids to prevent stretching */
+.product-grid:has(.product-card:nth-child(1):only-child) {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.product-grid:has(.product-card:nth-child(1):only-child) .product-card {
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Responsive fix for single items */
+@media (max-width: 768px) {
+    .product-grid:has(.product-card:nth-child(1):only-child) {
+        grid-template-columns: 1fr;
+    }
+
+    .product-grid:has(.product-card:nth-child(1):only-child) .product-card {
+        max-width: none;
+        margin: 0;
+    }
 }
 
 .product-card {
@@ -1575,7 +1754,7 @@ body.loaded .loading-screen {
     .price-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .jerigen-price {
         flex-direction: column;
         align-items: flex-start;
