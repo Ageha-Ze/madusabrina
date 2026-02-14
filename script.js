@@ -28,7 +28,7 @@ const products = {
         {
             id: 3,
             name: 'Madu Akasia Crassicarpa',
-            price: 75000,
+            price: 85000,
             unit: '1000gr',
             image: 'images/akasia.jpg',
             description: 'Madu monofloral dari bunga Akasia Crassicarpa yang tumbuh di perkebunan dataran rendah. Warna cerah keemasan dengan tekstur yang jernih. Rasa manis lembut dengan sedikit sentuhan floral yang menyegarkan. Tidak mudah mengkristal, cocok sebagai pemanis alami untuk teh dan minuman. Baik untuk kesehatan pencernaan dan detoksifikasi tubuh.',
@@ -119,6 +119,15 @@ const products = {
         },
         {
             id: 13,
+            name: 'Sabrina Kids Honey',
+            price: 25000,
+            unit: '180gr',
+            image: 'images/skhoney.jpeg',
+            description: 'Madu khusus anak-anak dengan rasa manis alami yang lembut. Madu murni khusus untuk sistem pencernaan anak yang sensitif. Kaya akan vitamin dan mineral alami yang mendukung pertumbuhan sehat. Dikemas dalam ukuran praktis yang mudah dibawa. Cocok dicampur dengan susu atau makanan penutup anak.',
+            category: 'kids'
+        },
+        {
+            id: 14,
             name: 'Madu Hutan Liar',
             price: 50000,
             unit: '180gr',
@@ -129,7 +138,7 @@ const products = {
     ],
     necropolis: [
         {
-            id: 14,
+            id: 15,
             name: 'NECROPOLIS - Propolis Trigona Raw',
             price: 150000,
             unit: '10ml',
@@ -543,7 +552,7 @@ window.clearCart = function () {
 // Fungsi untuk menambahkan Necropolis ke keranjang dari tombol di section Necropolis
 function addToCartFromNecropolis() {
     // Buka modal dengan produk Necropolis (ID 14)
-    openOrderModal(14);
+    openOrderModal(15);
 }
 
 window.sendOrderViaWhatsApp = function () {
@@ -600,3 +609,224 @@ document.addEventListener('click', function (e) {
         closeOrderModal();
     }
 });
+
+// Open Pre-Order Modal
+window.openOrderModalPreOrder = function () {
+    document.getElementById('preorder-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closeOrderModalPreOrder = function () {
+    document.getElementById('preorder-modal').classList.remove('active');
+    document.body.style.overflow = '';
+    clearPreOrderForm();
+};
+
+function clearPreOrderForm() {
+    document.getElementById('preorder-name').value = '';
+    document.getElementById('preorder-address').value = '';
+    document.querySelectorAll('.preorder-option').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    document.getElementById('preorder-quantity').style.display = 'none';
+    document.getElementById('preorder-quantity').value = '';
+}
+
+// Pre-Order Option Selection
+window.selectPreOrderOption = function (optionId) {
+    // Uncheck all other options
+    document.querySelectorAll('.preorder-option').forEach(checkbox => {
+        if (checkbox.id !== optionId) {
+            checkbox.checked = false;
+        }
+    });
+    
+    const quantityField = document.getElementById('preorder-quantity');
+    const quantityInput = document.getElementById('preorder-quantity-input');
+    
+    if (document.getElementById(optionId).checked) {
+        quantityField.style.display = 'block';
+        quantityInput.focus();
+        
+        // Set min value based on option
+        switch(optionId) {
+            case 'eceran':
+                quantityInput.min = '1';
+                quantityInput.max = '4';
+                quantityInput.placeholder = 'Masukkan jumlah kg (1-4kg)';
+                break;
+            case 'reseller':
+                quantityInput.min = '5';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 5kg)';
+                break;
+            case 'grosir-1kg':
+                quantityInput.min = '10';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 10kg)';
+                break;
+            case 'grosir-curah':
+                quantityInput.min = '15';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 15kg)';
+                break;
+            case 'become-agent':
+                quantityInput.min = '25';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 25kg)';
+                break;
+        }
+    } else {
+        quantityField.style.display = 'none';
+        quantityInput.value = '';
+    }
+};
+
+// Pre-Order Quantity Validation
+window.validatePreOrderQuantity = function () {
+    const selectedOption = document.querySelector('.preorder-option:checked');
+    const quantity = parseInt(document.getElementById('preorder-quantity').value);
+    const quantityField = document.getElementById('preorder-quantity');
+    
+    if (!selectedOption) {
+        alert('Silakan pilih jenis orderan terlebih dahulu');
+        return false;
+    }
+    
+    if (selectedOption.id === 'become-agent') {
+        if (quantity < 25) {
+            alert('Minimal order untuk agen adalah 25kg');
+            quantityField.value = '';
+            return false;
+        }
+        return true;
+    }
+    
+    // For regular options, show quantity field and validate
+    quantityField.style.display = 'block';
+    
+    if (selectedOption.id === 'eceran') {
+        if (quantity < 1 || quantity > 4) {
+            alert('Jumlah orderan Eceran harus antara 1-4kg');
+            quantityField.value = '';
+            return false;
+        }
+    } else if (selectedOption.id === 'reseller') {
+        if (quantity < 6 || quantity > 9) {
+            alert('Jumlah orderan Reseller harus antara 6-9kg');
+            quantityField.value = '';
+            return false;
+        }
+    } else if (selectedOption.id === 'grosir-1kg') {
+        if (quantity < 10 || quantity > 14) {
+            alert('Jumlah orderan Grosir 1kg harus antara 10-14kg');
+            quantityField.value = '';
+            return false;
+        }
+    } else if (selectedOption.id === 'grosir-curah') {
+        if (quantity < 15 || quantity > 24) {
+            alert('Jumlah orderan Grosir Curah harus antara 15-24kg');
+            quantityField.value = '';
+            return false;
+        }
+    }
+    
+    return true;
+};
+
+// Send Pre-Order via WhatsApp
+window.sendPreOrderViaWhatsApp = function () {
+    const customerName = document.getElementById('preorder-name').value.trim();
+    const customerAddress = document.getElementById('preorder-address').value.trim();
+    const selectedOption = document.querySelector('.preorder-option:checked');
+    const quantityInput = document.getElementById('preorder-quantity-input');
+    const quantity = parseInt(quantityInput.value);
+    
+    if (!customerName || !customerAddress) {
+        alert('Mohon lengkapi Nama dan Alamat sebelum memesan.');
+        return;
+    }
+    
+    if (!selectedOption) {
+        alert('Silakan pilih jenis orderan terlebih dahulu.');
+        return;
+    }
+    
+    if (!quantity || quantity < 1) {
+        alert('Silakan masukkan jumlah kg yang valid.');
+        return;
+    }
+    
+    // Validate quantity based on selected option
+    const optionId = selectedOption.id;
+    let minQty = 1;
+    let maxQty = Infinity;
+    
+    switch(optionId) {
+        case 'eceran':
+            minQty = 1;
+            maxQty = 4;
+            break;
+        case 'reseller':
+            minQty = 5;
+            maxQty = 9;
+            break;
+        case 'grosir-1kg':
+            minQty = 10;
+            maxQty = 14;
+            break;
+        case 'grosir-curah':
+            minQty = 15;
+            maxQty = 24;
+            break;
+        case 'become-agent':
+            minQty = 25;
+            maxQty = Infinity;
+            break;
+    }
+    
+    if (quantity < minQty || quantity > maxQty) {
+        let errorMsg = `Jumlah kg tidak sesuai untuk ${selectedOption.labels[0].textContent}`;
+        if (maxQty !== Infinity) {
+            errorMsg += `\nMinimal: ${minQty}kg, Maksimal: ${maxQty}kg`;
+        } else {
+            errorMsg += `\nMinimal: ${minQty}kg`;
+        }
+        alert(errorMsg);
+        return;
+    }
+    
+    // Calculate price based on option
+    let pricePerKg = 0;
+    let optionName = '';
+    
+    switch(optionId) {
+        case 'eceran':
+            pricePerKg = 85000;
+            optionName = 'Eceran 1kg';
+            break;
+        case 'reseller':
+            pricePerKg = 65000;
+            optionName = 'Reseller Ecer';
+            break;
+        case 'grosir-1kg':
+            pricePerKg = 55000;
+            optionName = 'Grosir 1kg';
+            break;
+        case 'grosir-curah':
+            pricePerKg = 50000;
+            optionName = 'Grosir Curah Tanpa Label';
+            break;
+        case 'become-agent':
+            pricePerKg = 50000;
+            optionName = 'Agent';
+            break;
+    }
+    
+    const totalPrice = quantity * pricePerKg;
+    
+    // Format WhatsApp message
+    const message = `Halo Kak Madu Sabrina!%0A%0A*Kak aku mau ikut Pre-Order Madu Akasia Crassicarpa...*%0A%0A*Data Pemesan:*%0A- Nama: ${encodeURIComponent(customerName)}%0A- Alamat: ${encodeURIComponent(customerAddress)}%0A%0A*Jenis Orderan:*%0A- ${encodeURIComponent(optionName)}%0A- Jumlah: ${quantity}kg%0A- Harga/kg: Rp ${pricePerKg.toLocaleString('id-ID')}%0A- Total: Rp ${totalPrice.toLocaleString('id-ID')}%0A%0A*Catatan:*%0A- Mohon konfirmasi ketersediaan dan ongkir%0A- Mohon panduan pembayaran%0A%0ATerima kasih Kak!%0A%0A*Madu Sabrina - Keaslian Alam Indonesia*`;
+    
+    const whatsappUrl = `https://wa.me/6289930719991?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Close modal after sending
+    closeOrderModalPreOrder();
+};

@@ -590,7 +590,7 @@ body.loaded .loading-screen {
         font-size: 32px;
         /* Perkecil sedikit ukuran font judul di mobile */
     }
-}
+}g
 
 /* ========== PRODUCTS SECTION ========== */
 .products-section {
@@ -1262,6 +1262,324 @@ body.loaded .loading-screen {
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+/* ========== PRE-ORDER MODAL ========== */
+.preorder-form {
+    width: 100%;
+}
+
+.preorder-form .form-group {
+    margin-bottom: 15px;
+}
+
+.preorder-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.preorder-form .form-group input,
+.preorder-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.preorder-form .form-group input:focus,
+.preorder-form .form-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.preorder-options {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.preorder-options h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.preorder-option-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preorder-option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+.preorder-option-label:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+}
+
+.preorder-option-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.preorder-option-label span {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.agent-divider {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin: 10px 0;
+    font-style: italic;
+}
+
+.agent-label {
+    background: #fff3cd !important;
+    border-color: #ffeaa7 !important;
+    border-left: 4px solid #ffc107;
+}
+
+.agent-label span {
+    font-weight: 600;
+    color: #856404;
+}
+
+.quantity-field {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.quantity-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.quantity-field input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.quantity-field input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* ========== OPEN PRE-ORDER SECTION STYLING ========== */
+.price-list {
+    margin-top: 30px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.price-list h4 {
+    margin: 0 0 20px 0;
+    color: var(--dark-brown);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.price-item {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.price-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.price-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.price-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark-brown);
+}
+
+.price-min {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.agent-special {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.agent-special h4 {
+    margin: 0 0 15px 0;
+    color: #856404;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.agent-price {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.agent-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #856404;
+}
+
+.agent-note {
+    font-size: 14px;
+    color: #856404;
+    font-style: italic;
+}
+
+.agent-min {
+    font-size: 12px;
+    color: #856404;
+    background: rgba(255, 193, 7, 0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.jerigen-price {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.jerigen-label {
+    font-size: 14px;
+    color: #856404;
+    font-weight: 600;
+}
+
+.jerigen-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #856404;
+}
+
+.jerigen-note {
+    font-size: 12px;
+    color: #856404;
+    font-style: italic;
+}
+
+.order-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.location-badge,
+.quality-note,
+.cs-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.location-badge {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.location-icon,
+.quality-icon,
+.cs-icon {
+    font-size: 20px;
+}
+
+.location-text,
+.quality-text,
+.cs-text {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.cs-phone {
+    font-size: 14px;
+    color: var(--honey-gold);
+    font-weight: 700;
+    background: rgba(212, 165, 116, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+/* Responsive for Open Pre-Order */
+@media (max-width: 768px) {
+    .price-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .jerigen-price {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
     }
 }
 
