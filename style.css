@@ -320,14 +320,105 @@ body.loaded .loading-screen {
     }
 }
 
-/* Navbar transparency fix for products.html */
-.site-header {
-    background-color: rgba(45, 31, 20, 0.95) !important;
-    backdrop-filter: blur(10px) !important;
+/* Navbar transparency fix for products.html - REMOVED !important rules */
+
+/* Hero section styles for products.html */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
 }
 
-.site-header.scrolled {
-    background-color: rgba(45, 31, 20, 0.95) !important;
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+    max-width: 700px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--honey-gold);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.hero-tagline {
+    font-size: 24px;
+    color: var(--light-cream);
+    font-style: italic;
+    animation: fadeInUp 1s ease 0.6s both;
+}
+
+.hero-dots {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 3;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.dot:hover,
+.dot.active {
+    background: #C9A961;
+    border-color: #C9A961;
+    transform: scale(1.2);
 }
 
 /* Mobile Navigation for very small screens */

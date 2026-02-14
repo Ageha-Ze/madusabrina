@@ -165,6 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
     initScrollAnimation();
     renderProducts();
     updateCartDisplay();
+    
+    // Initialize hero slider for products.html
+    initHeroSlider();
 });
 
 // Loading Screen Function
@@ -195,14 +198,39 @@ function initLoadingScreen() {
 // Navigation
 function initNavigation() {
     const header = document.getElementById('header');
+    const heroSection = document.querySelector('.hero');
 
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
+    function updateNavbarTransparency() {
+        if (heroSection) {
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            const scrollY = window.scrollY;
+            
+            if (scrollY < heroBottom - 100) {
+                // User is in hero section - make navbar transparent
+                header.style.background = 'transparent';
+                header.style.backdropFilter = 'none';
+                header.style.boxShadow = 'none';
+            } else {
+                // User is outside hero section - make navbar opaque
+                header.style.background = 'rgba(45, 31, 20, 0.98)';
+                header.style.backdropFilter = 'blur(10px)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
         } else {
-            header.classList.remove('scrolled');
+            // Fallback for pages without hero section
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         }
-    });
+    }
+
+    // Initial check
+    updateNavbarTransparency();
+
+    // Update on scroll
+    window.addEventListener('scroll', updateNavbarTransparency);
 
     // Active nav link on scroll
     const sections = document.querySelectorAll('section[id]');
@@ -283,7 +311,7 @@ function initHamburger() {
 
 // Hero Slider
 function initHeroSlider() {
-    // Check if hero elements exist (only available in index.html)
+    // Check if hero elements exist (available in both index.html and products.html)
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.dot');
     
