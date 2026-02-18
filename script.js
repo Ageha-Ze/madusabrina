@@ -164,10 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
     initHamburger();
     initScrollAnimation();
     renderProducts();
+    renderPOContent();
     updateCartDisplay();
     
-    // Initialize hero slider for products.html
-    initHeroSlider();
 });
 
 // Loading Screen Function
@@ -649,7 +648,7 @@ window.sendOrderViaWhatsApp = function () {
     message += `\n*TOTAL PESANAN: ${formatRupiah(total)}*\n\n_Mohon ditunggu konfirmasinya. Terima kasih!_`;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/6289930719991?text=${encodedMessage}`;
+    const whatsappUrl = `https://wa.me/628993071991?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
 };
 
@@ -670,392 +669,244 @@ document.addEventListener('click', function (e) {
     }
 });
 
-// Open Pre-Order Modal
-window.openOrderModalPreOrder = function () {
+// ── PRE-ORDER DATA ─────────────────────────────────────────
+const PO_PRODUCTS = [
+    {
+        id: 0,
+        name: 'Madu Akasia Crassicarpa',
+        waGreeting: 'Kak aku mau ikut Pre-Order Madu Akasia Crassicarpa...',
+        desc: 'Si Hitam Manis kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan — langsung dari peternak terpercaya dengan sanad jelas.',
+        options: [
+            { id: 'eceran',       label: 'Eceran 1kg: Rp 85.000 (1–4kg)',                   price: 85000, min: 1,  max: 4  },
+            { id: 'reseller',     label: 'Reseller Ecer: Rp 65.000/kg (min. 5kg)',           price: 65000, min: 5,  max: 9  },
+            { id: 'grosir-1kg',   label: 'Grosir 1kg: Rp 55.000/kg (min. 10kg)',             price: 55000, min: 10, max: 14 },
+            { id: 'grosir-curah', label: 'Grosir Curah Tanpa Label: Rp 50.000/kg (15kg)',    price: 50000, min: 15, max: 24 },
+            { id: 'agent',        label: 'DAFTAR MENJADI AGEN (min. 25kg)',                   price: 50000, min: 25, max: Infinity, isAgent: true },
+        ],
+        prices: [
+            { label: 'Eceran 1kg',    value: 'Rp 85.000' },
+            { label: 'Reseller Ecer', value: 'Rp 65.000/kg' },
+            { label: 'Grosir 1kg',    value: 'Rp 55.000/kg', min: 'Min. 10kg' },
+            { label: 'Grosir Curah',  value: 'Rp 50.000/kg', min: '15kg' },
+        ],
+        agent: { price: 'Rp 50.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
+        jerigen: { value: 'Rp 2.000.000', note: '(exclude ongkir)' },
+    },
+    {
+        id: 1,
+        name: 'Madu Multiflora',
+        waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora...',
+        desc: 'Madu multiflora kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan — langsung dari peternak terpercaya dengan sanad jelas.',
+        options: [
+            { id: 'eceran',       label: 'Eceran 1kg: Rp 90.000 (1–4kg)',                   price: 90000, min: 1,  max: 4  },
+            { id: 'reseller',     label: 'Reseller Ecer: Rp 70.000/kg (min. 5kg)',           price: 70000, min: 5,  max: 9  },
+            { id: 'grosir-1kg',   label: 'Grosir 1kg: Rp 60.000/kg (min. 10kg)',             price: 60000, min: 10, max: 14 },
+            { id: 'grosir-curah', label: 'Grosir Curah Tanpa Label: Rp 55.000/kg (15kg)',    price: 55000, min: 15, max: 24 },
+            { id: 'agent',        label: 'DAFTAR MENJADI AGEN (min. 25kg)',                   price: 55000, min: 25, max: Infinity, isAgent: true },
+        ],
+        prices: [
+            { label: 'Eceran 1kg',    value: 'Rp 90.000' },
+            { label: 'Reseller Ecer', value: 'Rp 70.000/kg' },
+            { label: 'Grosir 1kg',    value: 'Rp 60.000/kg', min: 'Min. 10kg' },
+            { label: 'Grosir Curah',  value: 'Rp 55.000/kg', min: '15kg' },
+        ],
+        agent: { price: 'Rp 55.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
+        jerigen: { value: 'Rp 2.250.000', note: '(exclude ongkir)' },
+    },
+];
+
+const BENEFITS = [
+    { title: 'Trusted & Terbukti',                       desc: 'Sudah terkenal luas di mayoritas kalangan dengan ribuan pelanggan puas.' },
+    { title: 'Jaminan Kemurnian Bukan Sekedar Keaslian', desc: 'Kami jamin murni tanpa campuran gula/air/pengawet.' },
+    { title: 'Tersertifikasi Lengkap',                    desc: 'Teruji lab, berizin PIRT & bersertifikat Halal.' },
+    { title: 'Pelayanan Premium',                         desc: 'Konsultasi GRATIS + panduan konsumsi. Bukan asal murah, tapi berkualitas produk DAN pelayanan!' },
+    { title: 'Terstandar Kualitas',                      desc: 'Setiap batch diuji ketat, fresh langsung dari sumber.' },
+    { title: 'Garansi 100%',                             desc: 'Uang kembali jika terbukti palsu/tidak murni.' },
+    { title: 'Edukasi Gratis',                           desc: 'Cara bedakan madu asli vs palsu.' },
+    { title: 'Sanad Terjaga',                            desc: 'Bisa dilacak dari peternak mana madunya berasal.' },
+    { title: 'Free Sample',                              desc: 'Tester gratis untuk order minimal tertentu (biar bisa coba dulu kualitasnya!).' },
+];
+
+let currentPOProduct = 0;
+
+// ── TAB SWITCHER ────────────────────────────────────────────
+window.switchPOTab = function (idx) {
+    document.querySelectorAll('.po-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+    document.querySelectorAll('.po-tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+    document.querySelectorAll('.po-hero-slide').forEach((s, i) => s.classList.toggle('active', i === idx));
+    currentPOProduct = idx;
+};
+
+// ── PARALLAX ────────────────────────────────────────────────
+(function initPOParallax() {
+    const banner = document.querySelector('.po-hero-banner');
+    if (!banner) return;
+
+    function updateParallax() {
+        const rect   = banner.getBoundingClientRect();
+        const viewH  = window.innerHeight;
+
+        // Only run when banner is visible
+        if (rect.bottom < 0 || rect.top > viewH) return;
+
+        // progress: 0 = banner top at viewport bottom, 1 = banner bottom at viewport top
+        const progress = 1 - rect.bottom / (viewH + rect.height);
+        // shift background from 20% (entering) to 80% (leaving) — slow drift
+        const yPos = 20 + progress * 60;
+
+        document.querySelectorAll('.po-hero-slide').forEach(slide => {
+            slide.style.backgroundPosition = `center ${yPos.toFixed(1)}%`;
+        });
+    }
+
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    updateParallax();
+})();
+
+// ── RENDER CONTENT PANELS ───────────────────────────────────
+function renderPOContent() {
+    const benefitsHTML = BENEFITS.map(b => `
+        <div class="feature-item">
+            <div class="feature-icon">✅</div>
+            <div class="feature-text"><h4>${b.title}</h4><p>${b.desc}</p></div>
+        </div>`).join('');
+
+    PO_PRODUCTS.forEach(p => {
+        const el = document.getElementById('po-content-' + p.id);
+        if (!el) return;
+
+        const priceRows = p.prices.map(pr => `
+            <div class="price-item">
+                <span class="price-label">${pr.label}:</span>
+                <span class="price-value">${pr.value}</span>
+                ${pr.min ? `<span class="price-min">${pr.min}</span>` : ''}
+            </div>`).join('');
+
+        el.innerHTML = `
+            <div class="section-label">OPEN PRE-ORDER</div>
+            <h2 class="section-title">🍯 ${p.name.toUpperCase()} (SUMATRA TO JOGJA) 🍯</h2>
+            <p class="about-text">${p.desc}</p>
+            <p class="about-text"><strong>Kenapa pilih Madu Sabrina?</strong></p>
+            <div class="feature-list">${benefitsHTML}</div>
+            <div class="price-list">
+                <h4>💰 DAFTAR HARGA PO:</h4>
+                <div class="price-grid">${priceRows}</div>
+                <div class="agent-special">
+                    <h4>🔥 SPECIAL FOR AGENT:</h4>
+                    <div class="agent-price">
+                        <span class="agent-value">${p.agent.price}</span>
+                        <span class="agent-note">${p.agent.note}</span>
+                        <span class="agent-min">${p.agent.min}</span>
+                    </div>
+                    <div class="jerigen-price">
+                        <span class="jerigen-label">Jerigen 50kg:</span>
+                        <span class="jerigen-value">${p.jerigen.value}</span>
+                        <span class="jerigen-note">${p.jerigen.note}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-info">
+                <div class="location-badge"><span class="location-icon">📍</span><span class="location-text">Limited slot batch Yogyakarta</span></div>
+                <div class="quality-note"><span class="quality-icon">⚡</span><span class="quality-text">Harga mencerminkan kualitas. Investasi kesehatan keluarga, bukan sekedar beli madu.</span></div>
+                <div class="cs-info"><span class="cs-icon">💬</span><span class="cs-text">CS siap bantu 24/7</span><span class="cs-phone">📞 0899-3071-991</span></div>
+            </div>`;
+    });
+}
+
+// ── UNIFIED MODAL ───────────────────────────────────────────
+window.openPreOrderModal = function (productIdx) {
+    currentPOProduct = productIdx !== undefined ? productIdx : currentPOProduct;
+    const p = PO_PRODUCTS[currentPOProduct];
+
+    document.getElementById('po-modal-title').textContent = '🛒 Pre-Order ' + p.name;
+
+    const optionsHTML = p.options.map(opt => `
+        <label class="preorder-option-label${opt.isAgent ? ' agent-label' : ''}">
+            <input type="checkbox" class="po-option" id="po-opt-${opt.id}" data-idx="${currentPOProduct}" data-id="${opt.id}">
+            <span>${opt.label}</span>
+        </label>`).join('<div class="agent-divider">───────────────────────────────</div>');
+
+    // Insert divider before agent option
+    document.getElementById('po-modal-options').innerHTML = optionsHTML;
+
+    // Attach change listeners
+    document.querySelectorAll('.po-option').forEach(cb => {
+        cb.addEventListener('change', onPOOptionChange);
+    });
+
+    // Reset form
+    document.getElementById('po-name').value = '';
+    document.getElementById('po-address').value = '';
+    document.getElementById('po-qty-field').style.display = 'none';
+    document.getElementById('po-qty-input').value = '';
+
     document.getElementById('preorder-modal').classList.add('active');
     document.body.style.overflow = 'hidden';
 };
 
-window.closeOrderModalPreOrder = function () {
+// Backward-compat aliases for old onclick calls in HTML
+window.openOrderModalPreOrder = function () { openPreOrderModal(0); };
+window.openOrderModalMultiflora = function () { openPreOrderModal(1); };
+
+function onPOOptionChange(e) {
+    // Uncheck siblings
+    document.querySelectorAll('.po-option').forEach(cb => {
+        if (cb !== e.target) cb.checked = false;
+    });
+
+    const qtyField = document.getElementById('po-qty-field');
+    const qtyInput = document.getElementById('po-qty-input');
+
+    if (!e.target.checked) {
+        qtyField.style.display = 'none';
+        qtyInput.value = '';
+        return;
+    }
+
+    const p = PO_PRODUCTS[currentPOProduct];
+    const opt = p.options.find(o => o.id === e.target.dataset.id);
+    if (!opt) return;
+
+    qtyField.style.display = 'block';
+    qtyInput.min = opt.min;
+    qtyInput.max = opt.max === Infinity ? '' : opt.max;
+    qtyInput.placeholder = opt.max === Infinity
+        ? `Masukkan jumlah kg (min. ${opt.min}kg)`
+        : `Masukkan jumlah kg (${opt.min}–${opt.max}kg)`;
+    qtyInput.focus();
+}
+
+window.closePreOrderModal = function () {
     document.getElementById('preorder-modal').classList.remove('active');
     document.body.style.overflow = '';
-    clearPreOrderForm();
 };
 
-function clearPreOrderForm() {
-    document.getElementById('preorder-name').value = '';
-    document.getElementById('preorder-address').value = '';
-    document.querySelectorAll('.preorder-option').forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    document.getElementById('preorder-quantity').style.display = 'none';
-    document.getElementById('preorder-quantity').value = '';
-}
+// Backward-compat
+window.closeOrderModalPreOrder   = window.closePreOrderModal;
+window.closeOrderModalMultiflora = window.closePreOrderModal;
 
-// Pre-Order Option Selection
-window.selectPreOrderOption = function (optionId) {
-    // Uncheck all other options
-    document.querySelectorAll('.preorder-option').forEach(checkbox => {
-        if (checkbox.id !== optionId) {
-            checkbox.checked = false;
-        }
-    });
-    
-    const quantityField = document.getElementById('preorder-quantity');
-    const quantityInput = document.getElementById('preorder-quantity-input');
-    
-    if (document.getElementById(optionId).checked) {
-        quantityField.style.display = 'block';
-        quantityInput.focus();
-        
-        // Set min value based on option
-        switch(optionId) {
-            case 'eceran':
-                quantityInput.min = '1';
-                quantityInput.max = '4';
-                quantityInput.placeholder = 'Masukkan jumlah kg (1-4kg)';
-                break;
-            case 'reseller':
-                quantityInput.min = '5';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 5kg)';
-                break;
-            case 'grosir-1kg':
-                quantityInput.min = '10';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 10kg)';
-                break;
-            case 'grosir-curah':
-                quantityInput.min = '15';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 15kg)';
-                break;
-            case 'become-agent':
-                quantityInput.min = '25';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 25kg)';
-                break;
-        }
-    } else {
-        quantityField.style.display = 'none';
-        quantityInput.value = '';
-    }
-};
+window.sendPreOrderWA = function () {
+    const name    = document.getElementById('po-name').value.trim();
+    const address = document.getElementById('po-address').value.trim();
+    const checked = document.querySelector('.po-option:checked');
+    const qty     = parseInt(document.getElementById('po-qty-input').value);
 
-// Pre-Order Quantity Validation
-window.validatePreOrderQuantity = function () {
-    const selectedOption = document.querySelector('.preorder-option:checked');
-    const quantity = parseInt(document.getElementById('preorder-quantity').value);
-    const quantityField = document.getElementById('preorder-quantity');
-    
-    if (!selectedOption) {
-        alert('Silakan pilih jenis orderan terlebih dahulu');
-        return false;
-    }
-    
-    if (selectedOption.id === 'become-agent') {
-        if (quantity < 25) {
-            alert('Minimal order untuk agen adalah 25kg');
-            quantityField.value = '';
-            return false;
-        }
-        return true;
-    }
-    
-    // For regular options, show quantity field and validate
-    quantityField.style.display = 'block';
-    
-    if (selectedOption.id === 'eceran') {
-        if (quantity < 1 || quantity > 4) {
-            alert('Jumlah orderan Eceran harus antara 1-4kg');
-            quantityField.value = '';
-            return false;
-        }
-    } else if (selectedOption.id === 'reseller') {
-        if (quantity < 6 || quantity > 9) {
-            alert('Jumlah orderan Reseller harus antara 6-9kg');
-            quantityField.value = '';
-            return false;
-        }
-    } else if (selectedOption.id === 'grosir-1kg') {
-        if (quantity < 10 || quantity > 14) {
-            alert('Jumlah orderan Grosir 1kg harus antara 10-14kg');
-            quantityField.value = '';
-            return false;
-        }
-    } else if (selectedOption.id === 'grosir-curah') {
-        if (quantity < 15 || quantity > 24) {
-            alert('Jumlah orderan Grosir Curah harus antara 15-24kg');
-            quantityField.value = '';
-            return false;
-        }
-    }
-    
-    return true;
-};
+    if (!name || !address) { alert('Mohon lengkapi Nama dan Alamat.'); return; }
+    if (!checked)           { alert('Silakan pilih jenis orderan.'); return; }
+    if (!qty || qty < 1)    { alert('Silakan masukkan jumlah kg yang valid.'); return; }
 
-// Send Pre-Order via WhatsApp
-window.sendPreOrderViaWhatsApp = function () {
-    const customerName = document.getElementById('preorder-name').value.trim();
-    const customerAddress = document.getElementById('preorder-address').value.trim();
-    const selectedOption = document.querySelector('.preorder-option:checked');
-    const quantityInput = document.getElementById('preorder-quantity-input');
-    const quantity = parseInt(quantityInput.value);
-    
-    if (!customerName || !customerAddress) {
-        alert('Mohon lengkapi Nama dan Alamat sebelum memesan.');
+    const p   = PO_PRODUCTS[currentPOProduct];
+    const opt = p.options.find(o => o.id === checked.dataset.id);
+
+    if (qty < opt.min || qty > opt.max) {
+        const maxStr = opt.max === Infinity ? '' : `–${opt.max}kg`;
+        alert(`Jumlah tidak sesuai. Range: ${opt.min}kg${maxStr}`);
         return;
     }
-    
-    if (!selectedOption) {
-        alert('Silakan pilih jenis orderan terlebih dahulu.');
-        return;
-    }
-    
-    if (!quantity || quantity < 1) {
-        alert('Silakan masukkan jumlah kg yang valid.');
-        return;
-    }
-    
-    // Validate quantity based on selected option
-    const optionId = selectedOption.id;
-    let minQty = 1;
-    let maxQty = Infinity;
-    
-    switch(optionId) {
-        case 'eceran':
-            minQty = 1;
-            maxQty = 4;
-            break;
-        case 'reseller':
-            minQty = 5;
-            maxQty = 9;
-            break;
-        case 'grosir-1kg':
-            minQty = 10;
-            maxQty = 14;
-            break;
-        case 'grosir-curah':
-            minQty = 15;
-            maxQty = 24;
-            break;
-        case 'become-agent':
-            minQty = 25;
-            maxQty = Infinity;
-            break;
-    }
-    
-    if (quantity < minQty || quantity > maxQty) {
-        let errorMsg = `Jumlah kg tidak sesuai untuk ${selectedOption.labels[0].textContent}`;
-        if (maxQty !== Infinity) {
-            errorMsg += `\nMinimal: ${minQty}kg, Maksimal: ${maxQty}kg`;
-        } else {
-            errorMsg += `\nMinimal: ${minQty}kg`;
-        }
-        alert(errorMsg);
-        return;
-    }
-    
-    // Calculate price based on option
-    let pricePerKg = 0;
-    let optionName = '';
-    
-    switch(optionId) {
-        case 'eceran':
-            pricePerKg = 85000;
-            optionName = 'Eceran 1kg';
-            break;
-        case 'reseller':
-            pricePerKg = 65000;
-            optionName = 'Reseller Ecer';
-            break;
-        case 'grosir-1kg':
-            pricePerKg = 55000;
-            optionName = 'Grosir 1kg';
-            break;
-        case 'grosir-curah':
-            pricePerKg = 50000;
-            optionName = 'Grosir Curah Tanpa Label';
-            break;
-        case 'become-agent':
-            pricePerKg = 50000;
-            optionName = 'Agent';
-            break;
-    }
-    
-    const totalPrice = quantity * pricePerKg;
-    
-    // Format WhatsApp message
-    const message = `Halo Kak Madu Sabrina!%0A%0A*Kak aku mau ikut Pre-Order Madu Akasia Crassicarpa...*%0A%0A*Data Pemesan:*%0A- Nama: ${encodeURIComponent(customerName)}%0A- Alamat: ${encodeURIComponent(customerAddress)}%0A%0A*Jenis Orderan:*%0A- ${encodeURIComponent(optionName)}%0A- Jumlah: ${quantity}kg%0A- Harga/kg: Rp ${pricePerKg.toLocaleString('id-ID')}%0A- Total: Rp ${totalPrice.toLocaleString('id-ID')}%0A%0A*Catatan:*%0A- Mohon konfirmasi ketersediaan dan ongkir%0A- Mohon panduan pembayaran%0A%0ATerima kasih Kak!%0A%0A*Madu Sabrina - Keaslian Alam Indonesia*`;
-    
-    const whatsappUrl = `https://wa.me/6289930719991?text=${message}`;
-    window.open(whatsappUrl, '_blank');
-    
-    // Close modal after sending
-    closeOrderModalPreOrder();
-};
 
-// Multiflora Pre-Order Modal Functions
-window.openOrderModalMultiflora = function () {
-    document.getElementById('multiflora-modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-};
+    const total = qty * opt.price;
+    const msg = `Halo Kak Madu Sabrina!%0A%0A*${p.waGreeting}*%0A%0A*Data Pemesan:*%0A- Nama: ${encodeURIComponent(name)}%0A- Alamat: ${encodeURIComponent(address)}%0A%0A*Jenis Orderan:*%0A- ${encodeURIComponent(opt.label)}%0A- Jumlah: ${qty}kg%0A- Harga/kg: Rp ${opt.price.toLocaleString('id-ID')}%0A- Total: Rp ${total.toLocaleString('id-ID')}%0A%0A*Catatan:*%0A- Mohon konfirmasi ketersediaan dan ongkir%0A- Mohon panduan pembayaran%0A%0ATerima kasih Kak!%0A%0A*Madu Sabrina - Keaslian Alam Indonesia*`;
 
-window.closeOrderModalMultiflora = function () {
-    document.getElementById('multiflora-modal').classList.remove('active');
-    document.body.style.overflow = '';
-    clearMultifloraForm();
-};
-
-function clearMultifloraForm() {
-    document.getElementById('multiflora-name').value = '';
-    document.getElementById('multiflora-address').value = '';
-    document.querySelectorAll('.multiflora-option').forEach(checkbox => {
-        checkbox.checked = false;
-    });
-    document.getElementById('multiflora-quantity').style.display = 'none';
-    document.getElementById('multiflora-quantity-input').value = '';
-}
-
-// Multiflora Option Selection
-window.selectMultifloraOption = function (optionId) {
-    // Uncheck all other options
-    document.querySelectorAll('.multiflora-option').forEach(checkbox => {
-        if (checkbox.id !== optionId) {
-            checkbox.checked = false;
-        }
-    });
-    
-    const quantityField = document.getElementById('multiflora-quantity');
-    const quantityInput = document.getElementById('multiflora-quantity-input');
-    
-    if (document.getElementById(optionId).checked) {
-        quantityField.style.display = 'block';
-        quantityInput.focus();
-        
-        // Set min value based on option
-        switch(optionId) {
-            case 'eceran-multiflora':
-                quantityInput.min = '1';
-                quantityInput.max = '4';
-                quantityInput.placeholder = 'Masukkan jumlah kg (1-4kg)';
-                break;
-            case 'reseller-multiflora':
-                quantityInput.min = '5';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 5kg)';
-                break;
-            case 'grosir-1kg-multiflora':
-                quantityInput.min = '10';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 10kg)';
-                break;
-            case 'grosir-curah-multiflora':
-                quantityInput.min = '15';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 15kg)';
-                break;
-            case 'become-agent-multiflora':
-                quantityInput.min = '25';
-                quantityInput.placeholder = 'Masukkan jumlah kg (min. 25kg)';
-                break;
-        }
-    } else {
-        quantityField.style.display = 'none';
-        quantityInput.value = '';
-    }
-};
-
-// Send Multiflora via WhatsApp
-window.sendMultifloraViaWhatsApp = function () {
-    const customerName = document.getElementById('multiflora-name').value.trim();
-    const customerAddress = document.getElementById('multiflora-address').value.trim();
-    const selectedOption = document.querySelector('.multiflora-option:checked');
-    const quantityInput = document.getElementById('multiflora-quantity-input');
-    const quantity = parseInt(quantityInput.value);
-    
-    if (!customerName || !customerAddress) {
-        alert('Mohon lengkapi Nama dan Alamat sebelum memesan.');
-        return;
-    }
-    
-    if (!selectedOption) {
-        alert('Silakan pilih jenis orderan terlebih dahulu.');
-        return;
-    }
-    
-    if (!quantity || quantity < 1) {
-        alert('Silakan masukkan jumlah kg yang valid.');
-        return;
-    }
-    
-    // Validate quantity based on selected option
-    const optionId = selectedOption.id;
-    let minQty = 1;
-    let maxQty = Infinity;
-    
-    switch(optionId) {
-        case 'eceran-multiflora':
-            minQty = 1;
-            maxQty = 4;
-            break;
-        case 'reseller-multiflora':
-            minQty = 5;
-            maxQty = 9;
-            break;
-        case 'grosir-1kg-multiflora':
-            minQty = 10;
-            maxQty = 14;
-            break;
-        case 'grosir-curah-multiflora':
-            minQty = 15;
-            maxQty = 24;
-            break;
-        case 'become-agent-multiflora':
-            minQty = 25;
-            maxQty = Infinity;
-            break;
-    }
-    
-    if (quantity < minQty || quantity > maxQty) {
-        let errorMsg = `Jumlah kg tidak sesuai untuk ${selectedOption.labels[0].textContent}`;
-        if (maxQty !== Infinity) {
-            errorMsg += `\nMinimal: ${minQty}kg, Maksimal: ${maxQty}kg`;
-        } else {
-            errorMsg += `\nMinimal: ${minQty}kg`;
-        }
-        alert(errorMsg);
-        return;
-    }
-    
-    // Calculate price based on option
-    let pricePerKg = 0;
-    let optionName = '';
-    
-    switch(optionId) {
-        case 'eceran-multiflora':
-            pricePerKg = 90000;
-            optionName = 'Eceran 1kg';
-            break;
-        case 'reseller-multiflora':
-            pricePerKg = 70000;
-            optionName = 'Reseller Ecer';
-            break;
-        case 'grosir-1kg-multiflora':
-            pricePerKg = 60000;
-            optionName = 'Grosir 1kg';
-            break;
-        case 'grosir-curah-multiflora':
-            pricePerKg = 55000;
-            optionName = 'Grosir Curah Tanpa Label';
-            break;
-        case 'become-agent-multiflora':
-            pricePerKg = 55000;
-            optionName = 'Agent';
-            break;
-    }
-    
-    const totalPrice = quantity * pricePerKg;
-    
-    // Format WhatsApp message
-    const message = `Halo Kak Madu Sabrina!%0A%0A*Kak aku mau ikut Pre-Order Madu Multiflora...*%0A%0A*Data Pemesan:*%0A- Nama: ${encodeURIComponent(customerName)}%0A- Alamat: ${encodeURIComponent(customerAddress)}%0A%0A*Jenis Orderan:*%0A- ${encodeURIComponent(optionName)}%0A- Jumlah: ${quantity}kg%0A- Harga/kg: Rp ${pricePerKg.toLocaleString('id-ID')}%0A- Total: Rp ${totalPrice.toLocaleString('id-ID')}%0A%0A*Catatan:*%0A- Mohon konfirmasi ketersediaan dan ongkir%0A- Mohon panduan pembayaran%0A%0ATerima kasih Kak!%0A%0A*Madu Sabrina - Keaslian Alam Indonesia*`;
-    
-    const whatsappUrl = `https://wa.me/6289930719991?text=${message}`;
-    window.open(whatsappUrl, '_blank');
-    
-    // Close modal after sending
-    closeOrderModalMultiflora();
+    window.open(`https://wa.me/628993071991?text=${msg}`, '_blank');
+    closePreOrderModal();
 };
