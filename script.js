@@ -890,3 +890,172 @@ window.sendPreOrderViaWhatsApp = function () {
     // Close modal after sending
     closeOrderModalPreOrder();
 };
+
+// Multiflora Pre-Order Modal Functions
+window.openOrderModalMultiflora = function () {
+    document.getElementById('multiflora-modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+};
+
+window.closeOrderModalMultiflora = function () {
+    document.getElementById('multiflora-modal').classList.remove('active');
+    document.body.style.overflow = '';
+    clearMultifloraForm();
+};
+
+function clearMultifloraForm() {
+    document.getElementById('multiflora-name').value = '';
+    document.getElementById('multiflora-address').value = '';
+    document.querySelectorAll('.multiflora-option').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    document.getElementById('multiflora-quantity').style.display = 'none';
+    document.getElementById('multiflora-quantity-input').value = '';
+}
+
+// Multiflora Option Selection
+window.selectMultifloraOption = function (optionId) {
+    // Uncheck all other options
+    document.querySelectorAll('.multiflora-option').forEach(checkbox => {
+        if (checkbox.id !== optionId) {
+            checkbox.checked = false;
+        }
+    });
+    
+    const quantityField = document.getElementById('multiflora-quantity');
+    const quantityInput = document.getElementById('multiflora-quantity-input');
+    
+    if (document.getElementById(optionId).checked) {
+        quantityField.style.display = 'block';
+        quantityInput.focus();
+        
+        // Set min value based on option
+        switch(optionId) {
+            case 'eceran-multiflora':
+                quantityInput.min = '1';
+                quantityInput.max = '4';
+                quantityInput.placeholder = 'Masukkan jumlah kg (1-4kg)';
+                break;
+            case 'reseller-multiflora':
+                quantityInput.min = '5';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 5kg)';
+                break;
+            case 'grosir-1kg-multiflora':
+                quantityInput.min = '10';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 10kg)';
+                break;
+            case 'grosir-curah-multiflora':
+                quantityInput.min = '15';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 15kg)';
+                break;
+            case 'become-agent-multiflora':
+                quantityInput.min = '25';
+                quantityInput.placeholder = 'Masukkan jumlah kg (min. 25kg)';
+                break;
+        }
+    } else {
+        quantityField.style.display = 'none';
+        quantityInput.value = '';
+    }
+};
+
+// Send Multiflora via WhatsApp
+window.sendMultifloraViaWhatsApp = function () {
+    const customerName = document.getElementById('multiflora-name').value.trim();
+    const customerAddress = document.getElementById('multiflora-address').value.trim();
+    const selectedOption = document.querySelector('.multiflora-option:checked');
+    const quantityInput = document.getElementById('multiflora-quantity-input');
+    const quantity = parseInt(quantityInput.value);
+    
+    if (!customerName || !customerAddress) {
+        alert('Mohon lengkapi Nama dan Alamat sebelum memesan.');
+        return;
+    }
+    
+    if (!selectedOption) {
+        alert('Silakan pilih jenis orderan terlebih dahulu.');
+        return;
+    }
+    
+    if (!quantity || quantity < 1) {
+        alert('Silakan masukkan jumlah kg yang valid.');
+        return;
+    }
+    
+    // Validate quantity based on selected option
+    const optionId = selectedOption.id;
+    let minQty = 1;
+    let maxQty = Infinity;
+    
+    switch(optionId) {
+        case 'eceran-multiflora':
+            minQty = 1;
+            maxQty = 4;
+            break;
+        case 'reseller-multiflora':
+            minQty = 5;
+            maxQty = 9;
+            break;
+        case 'grosir-1kg-multiflora':
+            minQty = 10;
+            maxQty = 14;
+            break;
+        case 'grosir-curah-multiflora':
+            minQty = 15;
+            maxQty = 24;
+            break;
+        case 'become-agent-multiflora':
+            minQty = 25;
+            maxQty = Infinity;
+            break;
+    }
+    
+    if (quantity < minQty || quantity > maxQty) {
+        let errorMsg = `Jumlah kg tidak sesuai untuk ${selectedOption.labels[0].textContent}`;
+        if (maxQty !== Infinity) {
+            errorMsg += `\nMinimal: ${minQty}kg, Maksimal: ${maxQty}kg`;
+        } else {
+            errorMsg += `\nMinimal: ${minQty}kg`;
+        }
+        alert(errorMsg);
+        return;
+    }
+    
+    // Calculate price based on option
+    let pricePerKg = 0;
+    let optionName = '';
+    
+    switch(optionId) {
+        case 'eceran-multiflora':
+            pricePerKg = 90000;
+            optionName = 'Eceran 1kg';
+            break;
+        case 'reseller-multiflora':
+            pricePerKg = 70000;
+            optionName = 'Reseller Ecer';
+            break;
+        case 'grosir-1kg-multiflora':
+            pricePerKg = 60000;
+            optionName = 'Grosir 1kg';
+            break;
+        case 'grosir-curah-multiflora':
+            pricePerKg = 55000;
+            optionName = 'Grosir Curah Tanpa Label';
+            break;
+        case 'become-agent-multiflora':
+            pricePerKg = 55000;
+            optionName = 'Agent';
+            break;
+    }
+    
+    const totalPrice = quantity * pricePerKg;
+    
+    // Format WhatsApp message
+    const message = `Halo Kak Madu Sabrina!%0A%0A*Kak aku mau ikut Pre-Order Madu Multiflora...*%0A%0A*Data Pemesan:*%0A- Nama: ${encodeURIComponent(customerName)}%0A- Alamat: ${encodeURIComponent(customerAddress)}%0A%0A*Jenis Orderan:*%0A- ${encodeURIComponent(optionName)}%0A- Jumlah: ${quantity}kg%0A- Harga/kg: Rp ${pricePerKg.toLocaleString('id-ID')}%0A- Total: Rp ${totalPrice.toLocaleString('id-ID')}%0A%0A*Catatan:*%0A- Mohon konfirmasi ketersediaan dan ongkir%0A- Mohon panduan pembayaran%0A%0ATerima kasih Kak!%0A%0A*Madu Sabrina - Keaslian Alam Indonesia*`;
+    
+    const whatsappUrl = `https://wa.me/6289930719991?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Close modal after sending
+    closeOrderModalMultiflora();
+};
