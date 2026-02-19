@@ -149,12 +149,26 @@ const products = {
     ]
 };
 
-// Cart
-let cart = [];
+// Cart — backed by localStorage so it persists across pages
+const CART_KEY = 'madusabrina_cart';
+
+function cartLoad() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+    catch (e) { return []; }
+}
+
+function cartSave(data) {
+    localStorage.setItem(CART_KEY, JSON.stringify(data));
+}
+
+let cart = cartLoad();
 let currentOrder = { quantity: 1 };
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function () {
+    // Reload cart from localStorage on every page load
+    cart = cartLoad();
+
     // Initialize loading screen
     initLoadingScreen();
 
@@ -166,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderProducts();
     renderPOContent();
     updateCartDisplay();
-    
+    updateCartBadge();
 });
 
 // Loading Screen Function
@@ -521,6 +535,7 @@ window.addToCart = function () {
         cart.push({ ...currentOrder });
     }
 
+    cartSave(cart);
     updateCartDisplay();
     closeOrderModal();
     alert(`Berhasil menambahkan ${currentOrder.quantity} ${currentOrder.name} ke keranjang!`);
@@ -571,6 +586,43 @@ function updateCartDisplay() {
 
         cartTotalDisplay.textContent = formatRupiah(total);
     }
+
+    updateCartBadge();
+}
+
+
+// Cart Badge — shows item count in navbar across all pages
+function updateCartBadge() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let badge = document.getElementById('cart-badge');
+
+    // Create badge if it doesn't exist yet
+    if (!badge) {
+        const cartLink = document.querySelector('a[href="#order"]');
+        if (!cartLink) return;
+        badge = document.createElement('span');
+        badge.id = 'cart-badge';
+        badge.style.cssText = `
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--honey-gold, #D4A574);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            padding: 0 5px;
+            margin-left: 6px;
+            vertical-align: middle;
+            line-height: 1;
+        `;
+        cartLink.appendChild(badge);
+    }
+
+    badge.textContent = totalItems;
+    badge.style.display = totalItems > 0 ? 'inline-flex' : 'none';
 }
 
 window.changeCartQuantity = function (itemId, change) {
@@ -580,6 +632,7 @@ window.changeCartQuantity = function (itemId, change) {
         if (cartItem.quantity < 1) {
             removeFromCart(itemId);
         } else {
+            cartSave(cart);
             updateCartDisplay();
         }
     }
@@ -587,6 +640,7 @@ window.changeCartQuantity = function (itemId, change) {
 
 window.removeFromCart = function (itemId) {
     cart = cart.filter(item => item.id !== itemId);
+    cartSave(cart);
     updateCartDisplay();
 };
 
@@ -598,6 +652,7 @@ window.clearCart = function () {
 
     if (confirm('Yakin ingin mengosongkan keranjang?')) {
         cart = [];
+        cartSave(cart);
         updateCartDisplay();
 
         // Kosongkan form detail pemesanan
