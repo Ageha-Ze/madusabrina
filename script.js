@@ -134,6 +134,15 @@ const products = {
             image: 'images/hutan180.jpg',
             description: 'Madu murni dari lebah Apis Dorsata yang bersarang di pohon-pohon tinggi hutan Sumatra. Dipanen secara tradisional oleh para pemanjat pohon ahli. Rasa lebih kuat dan kompleks dengan aroma bunga hutan yang khas. Mengandung berbagai nektar dari ratusan jenis bunga liar, memberikan manfaat kesehatan yang luar biasa lengkap.',
             category: 'lite'
+        },
+        {
+            id: 16,
+            name: 'Madu Hutan Liar',
+            price: 85000,
+            unit: '300gr',
+            image: 'images/HL300g.png',
+            description: 'Madu murni dari lebah Apis Dorsata yang bersarang di pohon-pohon tinggi hutan Sumatra. Dipanen secara tradisional oleh para pemanjat pohon ahli. Rasa lebih kuat dan kompleks dengan aroma bunga hutan yang khas. Mengandung berbagai nektar dari ratusan jenis bunga liar, memberikan manfaat kesehatan yang luar biasa lengkap.',
+            category: 'lite'
         }
     ],
     necropolis: [
@@ -464,6 +473,7 @@ function renderProducts() {
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
+    
     card.innerHTML = `
         <div class="product-image">
             <img src="${product.image}" alt="${product.name}">
@@ -538,6 +548,7 @@ window.addToCart = function () {
     cartSave(cart);
     updateCartDisplay();
     closeOrderModal();
+    
     alert(`Berhasil menambahkan ${currentOrder.quantity} ${currentOrder.name} ke keranjang!`);
 };
 
