@@ -129,7 +129,7 @@ const products = {
         {
             id: 14,
             name: 'Madu Hutan Liar',
-            price: 50000,
+            price: 55000,
             unit: '180gr',
             image: 'images/hutan180.jpg',
             description: 'Madu murni dari lebah Apis Dorsata yang bersarang di pohon-pohon tinggi hutan Sumatra. Dipanen secara tradisional oleh para pemanjat pohon ahli. Rasa lebih kuat dan kompleks dengan aroma bunga hutan yang khas. Mengandung berbagai nektar dari ratusan jenis bunga liar, memberikan manfaat kesehatan yang luar biasa lengkap.',
@@ -226,7 +226,7 @@ function initNavigation() {
         if (heroSection) {
             const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
             const scrollY = window.scrollY;
-            
+
             if (scrollY < heroBottom - 100) {
                 // User is in hero section - make navbar transparent
                 header.style.background = 'transparent';
@@ -302,7 +302,7 @@ function initNavigation() {
 function initHamburger() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
-    
+
     // Check if hamburger elements exist
     if (!hamburger || !navMenu) {
         return;
@@ -336,7 +336,7 @@ function initHeroSlider() {
     // Check if hero elements exist (available in both index.html and products.html)
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.dot');
-    
+
     if (slides.length === 0 || dots.length === 0) {
         return;
     }
@@ -473,7 +473,7 @@ function renderProducts() {
 function createProductCard(product) {
     const card = document.createElement('div');
     card.className = 'product-card';
-    
+
     card.innerHTML = `
         <div class="product-image">
             <img src="${product.image}" alt="${product.name}">
@@ -548,7 +548,7 @@ window.addToCart = function () {
     cartSave(cart);
     updateCartDisplay();
     closeOrderModal();
-    
+
     alert(`Berhasil menambahkan ${currentOrder.quantity} ${currentOrder.name} ke keranjang!`);
 };
 
@@ -744,20 +744,20 @@ const PO_PRODUCTS = [
         waGreeting: 'Kak aku mau ikut Pre-Order Madu Akasia Crassicarpa...',
         desc: 'Si Hitam Manis kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan — langsung dari peternak terpercaya dengan sanad jelas.',
         options: [
-            { id: 'eceran',       label: 'Eceran 1kg: Rp 85.000 (1–4kg)',                   price: 85000, min: 1,  max: 4  },
-            { id: 'reseller',     label: 'Reseller Ecer: Rp 65.000/kg (min. 5kg)',           price: 65000, min: 5,  max: 9  },
-            { id: 'grosir-1kg',   label: 'Grosir 1kg: Rp 55.000/kg (min. 10kg)',             price: 55000, min: 10, max: 14 },
-            { id: 'grosir-curah', label: 'Grosir Curah Tanpa Label: Rp 50.000/kg (15kg)',    price: 50000, min: 15, max: 24 },
-            { id: 'agent',        label: 'DAFTAR MENJADI AGEN (min. 25kg)',                   price: 50000, min: 25, max: Infinity, isAgent: true },
+            { id: 'eceran', label: 'Eceran 1kg: Rp 85.000 (1–4kg)', price: 85000, min: 1, max: 4 },
+            { id: 'reseller', label: 'Reseller Ecer: Rp 65.000/kg (min. 5kg)', price: 65000, min: 5, max: 9 },
+            { id: 'grosir-1kg', label: 'Grosir 1kg: Rp 60.000/kg (min. 10kg)', price: 60000, min: 10, max: 14 },
+            { id: 'grosir-curah', label: 'Grosir Curah Tanpa Label: Rp 55.000/kg (15kg)', price: 55000, min: 15, max: 24 },
+            { id: 'agent', label: 'DAFTAR MENJADI AGEN (min. 25kg)', price: 55000, min: 25, max: Infinity, isAgent: true },
         ],
         prices: [
-            { label: 'Eceran 1kg',    value: 'Rp 85.000' },
+            { label: 'Eceran 1kg', value: 'Rp 85.000' },
             { label: 'Reseller Ecer', value: 'Rp 65.000/kg' },
-            { label: 'Grosir 1kg',    value: 'Rp 55.000/kg', min: 'Min. 10kg' },
-            { label: 'Grosir Curah',  value: 'Rp 50.000/kg', min: '15kg' },
+            { label: 'Grosir 1kg', value: 'Rp 60.000/kg', min: 'Min. 10kg' },
+            { label: 'Grosir Curah', value: 'Rp 55.000/kg', min: '15kg' },
         ],
-        agent: { price: 'Rp 50.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
-        jerigen: { value: 'Rp 2.000.000', note: '(exclude ongkir)' },
+        agent: { price: 'Rp 55.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
+        jerigen: { value: 'Rp 2.100.000', note: '(exclude ongkir)' },
     },
     {
         id: 1,
@@ -765,33 +765,33 @@ const PO_PRODUCTS = [
         waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora...',
         desc: 'Madu multiflora kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan — langsung dari peternak terpercaya dengan sanad jelas.',
         options: [
-            { id: 'eceran',       label: 'Eceran 1kg: Rp 90.000 (1–4kg)',                   price: 90000, min: 1,  max: 4  },
-            { id: 'reseller',     label: 'Reseller Ecer: Rp 70.000/kg (min. 5kg)',           price: 70000, min: 5,  max: 9  },
-            { id: 'grosir-1kg',   label: 'Grosir 1kg: Rp 60.000/kg (min. 10kg)',             price: 60000, min: 10, max: 14 },
-            { id: 'grosir-curah', label: 'Grosir Curah Tanpa Label: Rp 55.000/kg (15kg)',    price: 55000, min: 15, max: 24 },
-            { id: 'agent',        label: 'DAFTAR MENJADI AGEN (min. 25kg)',                   price: 55000, min: 25, max: Infinity, isAgent: true },
+            { id: 'eceran', label: 'Eceran 1kg: Rp 90.000 (1–4kg)', price: 90000, min: 1, max: 4 },
+            { id: 'reseller', label: 'Reseller Ecer: Rp 70.000/kg (min. 5kg)', price: 70000, min: 5, max: 9 },
+            { id: 'grosir-1kg', label: 'Grosir 1kg: Rp 65.000/kg (min. 10kg)', price: 65000, min: 10, max: 14 },
+            { id: 'grosir-curah', label: 'Grosir Curah Tanpa Label: Rp 60.000/kg (15kg)', price: 60000, min: 15, max: 24 },
+            { id: 'agent', label: 'DAFTAR MENJADI AGEN (min. 25kg)', price: 60000, min: 25, max: Infinity, isAgent: true },
         ],
         prices: [
-            { label: 'Eceran 1kg',    value: 'Rp 90.000' },
+            { label: 'Eceran 1kg', value: 'Rp 90.000' },
             { label: 'Reseller Ecer', value: 'Rp 70.000/kg' },
-            { label: 'Grosir 1kg',    value: 'Rp 60.000/kg', min: 'Min. 10kg' },
-            { label: 'Grosir Curah',  value: 'Rp 55.000/kg', min: '15kg' },
+            { label: 'Grosir 1kg', value: 'Rp 65.000/kg', min: 'Min. 10kg' },
+            { label: 'Grosir Curah', value: 'Rp 60.000/kg', min: '15kg' },
         ],
-        agent: { price: 'Rp 55.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
+        agent: { price: 'Rp 60.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
         jerigen: { value: 'Rp 2.250.000', note: '(exclude ongkir)' },
     },
 ];
 
 const BENEFITS = [
-    { title: 'Trusted & Terbukti',                       desc: 'Sudah terkenal luas di mayoritas kalangan dengan ribuan pelanggan puas.' },
+    { title: 'Trusted & Terbukti', desc: 'Sudah terkenal luas di mayoritas kalangan dengan ribuan pelanggan puas.' },
     { title: 'Jaminan Kemurnian Bukan Sekedar Keaslian', desc: 'Kami jamin murni tanpa campuran gula/air/pengawet.' },
-    { title: 'Tersertifikasi Lengkap',                    desc: 'Teruji lab, berizin PIRT & bersertifikat Halal.' },
-    { title: 'Pelayanan Premium',                         desc: 'Konsultasi GRATIS + panduan konsumsi. Bukan asal murah, tapi berkualitas produk DAN pelayanan!' },
-    { title: 'Terstandar Kualitas',                      desc: 'Setiap batch diuji ketat, fresh langsung dari sumber.' },
-    { title: 'Garansi 100%',                             desc: 'Uang kembali jika terbukti palsu/tidak murni.' },
-    { title: 'Edukasi Gratis',                           desc: 'Cara bedakan madu asli vs palsu.' },
-    { title: 'Sanad Terjaga',                            desc: 'Bisa dilacak dari peternak mana madunya berasal.' },
-    { title: 'Free Sample',                              desc: 'Tester gratis untuk order minimal tertentu (biar bisa coba dulu kualitasnya!).' },
+    { title: 'Tersertifikasi Lengkap', desc: 'Teruji lab, berizin PIRT & bersertifikat Halal.' },
+    { title: 'Pelayanan Premium', desc: 'Konsultasi GRATIS + panduan konsumsi. Bukan asal murah, tapi berkualitas produk DAN pelayanan!' },
+    { title: 'Terstandar Kualitas', desc: 'Setiap batch diuji ketat, fresh langsung dari sumber.' },
+    { title: 'Garansi 100%', desc: 'Uang kembali jika terbukti palsu/tidak murni.' },
+    { title: 'Edukasi Gratis', desc: 'Cara bedakan madu asli vs palsu.' },
+    { title: 'Sanad Terjaga', desc: 'Bisa dilacak dari peternak mana madunya berasal.' },
+    { title: 'Free Sample', desc: 'Tester gratis untuk order minimal tertentu (biar bisa coba dulu kualitasnya!).' },
 ];
 
 let currentPOProduct = 0;
@@ -810,8 +810,8 @@ window.switchPOTab = function (idx) {
     if (!banner) return;
 
     function updateParallax() {
-        const rect   = banner.getBoundingClientRect();
-        const viewH  = window.innerHeight;
+        const rect = banner.getBoundingClientRect();
+        const viewH = window.innerHeight;
 
         // Only run when banner is visible
         if (rect.bottom < 0 || rect.top > viewH) return;
@@ -856,7 +856,7 @@ function renderPOContent() {
             <p class="about-text"><strong>Kenapa pilih Madu Sabrina?</strong></p>
             <div class="feature-list">${benefitsHTML}</div>
             <div class="price-list">
-                <h4>💰 DAFTAR HARGA PO:</h4>
+                <h4>💰 DAFTAR HARGA PO MADU KEMASAN 1kg:</h4>
                 <div class="price-grid">${priceRows}</div>
                 <div class="agent-special">
                     <h4>🔥 SPECIAL FOR AGENT:</h4>
@@ -949,20 +949,20 @@ window.closePreOrderModal = function () {
 };
 
 // Backward-compat
-window.closeOrderModalPreOrder   = window.closePreOrderModal;
+window.closeOrderModalPreOrder = window.closePreOrderModal;
 window.closeOrderModalMultiflora = window.closePreOrderModal;
 
 window.sendPreOrderWA = function () {
-    const name    = document.getElementById('po-name').value.trim();
+    const name = document.getElementById('po-name').value.trim();
     const address = document.getElementById('po-address').value.trim();
     const checked = document.querySelector('.po-option:checked');
-    const qty     = parseInt(document.getElementById('po-qty-input').value);
+    const qty = parseInt(document.getElementById('po-qty-input').value);
 
     if (!name || !address) { alert('Mohon lengkapi Nama dan Alamat.'); return; }
-    if (!checked)           { alert('Silakan pilih jenis orderan.'); return; }
-    if (!qty || qty < 1)    { alert('Silakan masukkan jumlah kg yang valid.'); return; }
+    if (!checked) { alert('Silakan pilih jenis orderan.'); return; }
+    if (!qty || qty < 1) { alert('Silakan masukkan jumlah kg yang valid.'); return; }
 
-    const p   = PO_PRODUCTS[currentPOProduct];
+    const p = PO_PRODUCTS[currentPOProduct];
     const opt = p.options.find(o => o.id === checked.dataset.id);
 
     if (qty < opt.min || qty > opt.max) {
