@@ -780,6 +780,30 @@ const PO_PRODUCTS = [
         agent: { price: 'Rp 60.000/kg', note: 'tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg' },
         jerigen: { value: 'Rp 2.250.000', note: '(exclude ongkir)' },
     },
+    {
+        id: 2,
+        name: 'Multiflora Alpukat & Kayu Putih',
+        waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora Alpukat & Kayu Putih (Jawa - Purwodadi)...',
+        desc: 'Madu Multi Jawa dominan nektar alpukat dan kayu putih — rasanya manis segerrr, panen langsung dari Purwodadi, Jawa Tengah. Perpaduan nektar alami pilihan: antioksidan tinggi bantu lawan radikal bebas, dukung daya tahan tubuh, bantu redakan tenggorokan & napas lebih lega, anti-inflamasi alami, serta sumber energi & stamina harian. Cocok untuk konsumsi rutin seluruh keluarga.',
+        options: [
+            { id: 'konsumen',    label: 'Konsumen/Eceran: Rp 150.000/kg (1–4kg)',        price: 150000, min: 1,  max: 4 },
+            { id: 'marketer',    label: 'Marketer: Rp 95.000/kg (min. 1kg)',              price: 95000,  min: 1,  max: 4 },
+            { id: 'reseller',    label: 'Reseller: Rp 85.000/kg (min. 5kg)',              price: 85000,  min: 5,  max: 14 },
+            { id: 'agen',        label: 'Agen: Rp 75.000/kg (min. 15kg)',                 price: 75000,  min: 15, max: 24 },
+            { id: 'curah-kg',    label: 'Curah Kiloan: Rp 70.000/kg (min. 25kg)',         price: 70000,  min: 25, max: 49 },
+            { id: 'curah-grosir',label: 'DAFTAR MENJADI AGEN Curah Grosir: Rp 55.000/kg (25–50kg)', price: 55000, min: 25, max: 50, isAgent: true },
+        ],
+        prices: [
+            { label: 'Konsumen/Eceran', value: 'Rp 150.000/kg' },
+            { label: 'Marketer',        value: 'Rp 95.000/kg' },
+            { label: 'Reseller',        value: 'Rp 85.000/kg',  min: 'Min. 5kg' },
+            { label: 'Agen',            value: 'Rp 75.000/kg',  min: 'Min. 15kg' },
+            { label: 'Curah Kiloan',    value: 'Rp 70.000/kg',  min: 'Min. 25kg' },
+            { label: 'Curah Grosir',    value: 'Rp 55.000/kg',  min: '25–50kg (non kiloan)' },
+        ],
+        agent: { price: 'Rp 55.000/kg', note: 'non kiloan, tanpa minimal berkelanjutan!', min: 'Order awal min. 25kg (25–50kg)' },
+        jerigen: { value: 'Rp 2.750.000', note: '(50kg, exclude ongkir)' },
+    },
 ];
 
 const BENEFITS = [
@@ -851,7 +875,7 @@ function renderPOContent() {
 
         el.innerHTML = `
             <div class="section-label">OPEN PRE-ORDER</div>
-            <h2 class="section-title">🍯 ${p.name.toUpperCase()} (SUMATRA TO JOGJA) 🍯</h2>
+            <h2 class="section-title">🍯 ${p.name.toUpperCase()} ${p.id === 2 ? '(JAWA - PURWODADI)' : p.id === 0 ? '(SUMATRA TO JOGJA)' : '(SUMATRA TO JOGJA)'} 🍯</h2>
             <p class="about-text">${p.desc}</p>
             <p class="about-text"><strong>Kenapa pilih Madu Sabrina?</strong></p>
             <div class="feature-list">${benefitsHTML}</div>
