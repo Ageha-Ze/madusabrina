@@ -2556,3 +2556,568 @@ g
 .btn-add-cart {
     border-radius: 8px !important;
 }
+/* ==========================================
+   REFACTOR v2 — CRO + Landing Page Upgrade
+   Skill #1 (landing-page) + #3 (marketingskills CRO)
+   ========================================== */
+
+/* ── FONTS UPGRADE ── */
+:root {
+    --font-display: 'DM Serif Display', 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+    /* Extended palette */
+    --honey-light: #F0C97A;
+    --honey-mid: #C9A44A;
+    --cream-warm: #FAF6EE;
+    --border-subtle: rgba(212,165,116,0.18);
+    --text-muted: rgba(74,56,40,0.55);
+    /* Shadows */
+    --shadow-card: 0 2px 8px rgba(45,31,20,0.06), 0 12px 40px rgba(45,31,20,0.10);
+    --shadow-hover: 0 8px 24px rgba(45,31,20,0.14), 0 32px 64px rgba(45,31,20,0.12);
+    --glow-gold: 0 0 40px rgba(212,165,116,0.25);
+}
+
+/* ── ANNOUNCEMENT BAR ── */
+.announcement-bar {
+    background: linear-gradient(90deg, var(--deep-brown) 0%, #3a2518 50%, var(--deep-brown) 100%);
+    color: rgba(255,255,255,0.9);
+    font-size: 12.5px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    overflow: hidden;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(212,165,116,0.2);
+    position: relative;
+    z-index: 1001;
+}
+
+.announcement-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: marqueeScroll 28s linear infinite;
+    white-space: nowrap;
+    padding: 0 40px;
+}
+
+.announcement-inner strong {
+    color: var(--honey-gold);
+}
+
+@keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.ann-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--honey-gold);
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.ann-cta {
+    color: var(--honey-gold);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid rgba(212,165,116,0.4);
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.ann-cta:hover {
+    background: var(--honey-gold);
+    color: var(--deep-brown);
+}
+
+/* Push header below announcement bar */
+.site-header { top: 38px; }
+#home { scroll-margin-top: 38px; }
+
+/* ── HERO UPGRADES ── */
+.hero-eyebrow {
+    font-size: 12px;
+    color: var(--honey-gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 22px;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease 0.1s both;
+}
+
+.hero-title em {
+    font-style: italic;
+    color: var(--honey-gold);
+    font-family: 'DM Serif Display', 'Playfair Display', serif;
+}
+
+/* Keep existing .hero-subtitle if needed */
+.hero-subtitle {
+    font-size: 15px;
+    color: var(--honey-gold);
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeInUp 1s ease 0.2s both;
+    opacity: 0.9;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.8s both;
+}
+
+.hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 32px;
+    background: linear-gradient(135deg, var(--honey-gold) 0%, #B8871A 100%);
+    color: var(--deep-brown);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(212,165,116,0.5);
+}
+
+.hero-btn-primary:hover::after { opacity: 1; }
+
+.hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 32px;
+    background: transparent;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.55);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.hero-btn-secondary:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.9);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+    .hero-actions { flex-direction: column; }
+    .hero-btn-primary, .hero-btn-secondary { text-align: center; justify-content: center; }
+}
+
+/* ── TRUST STRIP ── */
+.trust-strip {
+    background: var(--white);
+    border-bottom: 1px solid var(--border-subtle);
+    border-top: 1px solid var(--border-subtle);
+    padding: 28px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.trust-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 160px;
+}
+
+.trust-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+}
+
+.trust-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.trust-text strong {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--dark-brown);
+    letter-spacing: 0.2px;
+}
+
+.trust-text span {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.trust-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border-subtle);
+    flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+    .trust-grid { justify-content: flex-start; gap: 20px; }
+    .trust-divider { display: none; }
+    .trust-item { min-width: 200px; }
+}
+
+@media (max-width: 600px) {
+    .trust-item { min-width: 140px; }
+    .trust-text strong { font-size: 11.5px; }
+}
+
+/* ── SOCIAL PROOF NUMBERS ── */
+.social-proof-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 44px;
+    margin-bottom: 32px;
+    background: var(--cream-warm);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.sp-item {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sp-number {
+    font-family: 'DM Serif Display', 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--dark-brown);
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.sp-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.sp-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--border-subtle);
+    flex-shrink: 0;
+}
+
+/* ── ABOUT CTA BUTTON ── */
+.about-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--dark-brown);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 14px 0;
+    border-bottom: 2px solid var(--honey-gold);
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.about-cta-btn:hover {
+    color: var(--honey-mid);
+    gap: 14px;
+}
+
+/* ── PRODUCTS SECTION UPGRADE ── */
+/* Sticky "view all" CTA already exists, just enhance badge count indicator */
+.product-badge {
+    background: linear-gradient(135deg, var(--dark-brown) 0%, var(--deep-brown) 100%) !important;
+    color: var(--honey-gold) !important;
+    font-size: 9px !important;
+    letter-spacing: 2.5px !important;
+}
+
+/* Product card price anchoring - "mulai dari" hint */
+.product-price-hint {
+    font-family: var(--font-body);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* ── SECTION LABEL UPGRADE ── */
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px !important;
+    letter-spacing: 3.5px !important;
+}
+
+.section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--honey-gold);
+}
+
+/* ── BENEFIT CARDS UPGRADE ── */
+.benefit-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--honey-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.benefit-card:hover::before { opacity: 1; }
+
+/* ── ORDER SECTION UPGRADE ── */
+.order-section {
+    background: var(--cream-warm);
+    position: relative;
+}
+
+.order-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, var(--honey-gold) 50%, transparent 100%);
+}
+
+.order-form, .cart-summary {
+    border: 1px solid var(--border-subtle) !important;
+}
+
+/* Upgrade cart section header */
+.order-header h2 {
+    font-family: 'DM Serif Display', 'Playfair Display', serif !important;
+}
+
+/* ── PREORDER TAB SECTION UPGRADE ── */
+.preorder-tab-section {
+    background: var(--cream-warm);
+}
+
+.preorder-tab-section::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--honey-gold), transparent);
+    margin-bottom: 0;
+}
+
+.po-tab-btn {
+    font-size: 13px !important;
+}
+
+/* ── GALLERY SECTION UPGRADE ── */
+.gallery-section {
+    position: relative;
+}
+
+.gallery-section::before {
+    content: '"Keaslian yang terasa, kemurnian yang terjaga"';
+    display: block;
+    text-align: center;
+    font-family: 'DM Serif Display', 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--honey-gold);
+    opacity: 0.7;
+    padding: 0 0 48px;
+    letter-spacing: 0.5px;
+}
+
+/* ── FOOTER UPGRADE ── */
+.footer-bottom p:first-child {
+    font-size: 13px;
+}
+
+/* ── WHATSAPP FLOAT UPGRADE ── */
+.whatsapp-float {
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+}
+
+/* Pulse label on WA float */
+.whatsapp-float::after {
+    content: 'Chat';
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--deep-brown);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+}
+
+.whatsapp-float:hover::after { opacity: 1; }
+
+/* ── MODAL UPGRADE ── */
+.modal-content {
+    border: 1px solid var(--border-subtle);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--cream-warm) 0%, var(--white) 100%);
+}
+
+/* ── PREORDER OPTION UPGRADE ── */
+.preorder-option-label:has(input:checked) {
+    background: rgba(212,165,116,0.1) !important;
+    border-color: var(--honey-gold) !important;
+}
+
+/* ── SECTION TRANSITIONS ── */
+.about-section,
+.klanceng-section,
+#necropolis,
+.benefits-section,
+.products-section,
+.order-section,
+.gallery-section,
+.preorder-tab-section {
+    position: relative;
+}
+
+/* ── PRODUCT CARD — "MULAI DARI" label ── */
+.product-price::before {
+    content: 'Mulai dari';
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+/* ── FEATURE ITEM CRO ENHANCEMENT ── */
+.feature-item {
+    border-left: 3px solid transparent;
+    transition: all 0.35s ease, border-color 0.35s ease;
+}
+
+.feature-item:hover {
+    border-left-color: var(--honey-gold) !important;
+}
+
+/* ── STICKY WHATSAPP CTA ── */
+@media (max-width: 768px) {
+    .hero-actions {
+        gap: 12px;
+    }
+    .hero-btn-primary, .hero-btn-secondary {
+        padding: 13px 24px;
+        font-size: 12px;
+    }
+    .social-proof-numbers {
+        flex-direction: row;
+    }
+    .sp-number { font-size: 28px; }
+}
+
+/* ── SCROLL REVEAL ENHANCEMENT ── */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.product-card.fade-in,
+.benefit-card.fade-in {
+    animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ── HERO SCROLL INDICATOR ── */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+    animation: scrollLine 2s ease-in-out infinite;
+    z-index: 3;
+}
+
+@keyframes scrollLine {
+    0%, 100% { opacity: 0; transform: translateX(-50%) scaleY(0.5); }
+    50%       { opacity: 1; transform: translateX(-50%) scaleY(1); }
+}
