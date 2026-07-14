@@ -742,7 +742,7 @@ const PO_PRODUCTS = [
         id: 0,
         name: 'Madu Akasia Crassicarpa',
         waGreeting: 'Kak aku mau ikut Pre-Order Madu Akasia Crassicarpa...',
-        desc: 'Si Hitam Manis kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan — langsung dari peternak terpercaya dengan sanad jelas.',
+        desc: 'Si Hitam Manis kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan, langsung dari peternak terpercaya dengan sanad jelas.',
         options: [
             { id: 'eceran', label: 'Eceran 1kg: Rp 85.000 (1–4kg)', price: 85000, min: 1, max: 4 },
             { id: 'reseller', label: 'Reseller Ecer: Rp 65.000/kg (min. 5kg)', price: 65000, min: 5, max: 9 },
@@ -761,9 +761,9 @@ const PO_PRODUCTS = [
     },
     {
         id: 1,
-        name: 'Madu Multiflora',
-        waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora...',
-        desc: 'Madu multiflora kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan — langsung dari peternak terpercaya dengan sanad jelas.',
+        name: 'Madu Multiflora Sumatra',
+        waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora Sumatra...',
+        desc: 'Madu multiflora kaya manfaat dari Sumatra! 100% Raw Honey murni tanpa proses pemanasan, langsung dari peternak terpercaya dengan sanad jelas.',
         options: [
             { id: 'eceran', label: 'Eceran 1kg: Rp 90.000 (1–4kg)', price: 90000, min: 1, max: 4 },
             { id: 'reseller', label: 'Reseller Ecer: Rp 70.000/kg (min. 5kg)', price: 70000, min: 5, max: 9 },
@@ -782,9 +782,9 @@ const PO_PRODUCTS = [
     },
     {
         id: 2,
-        name: 'Multiflora Alpukat & Kayu Putih',
-        waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora Alpukat & Kayu Putih (Jawa - Purwodadi)...',
-        desc: 'Madu Multi Jawa dominan nektar alpukat dan kayu putih — rasanya manis segerrr, panen langsung dari Purwodadi, Jawa Tengah. Perpaduan nektar alami pilihan: antioksidan tinggi bantu lawan radikal bebas, dukung daya tahan tubuh, bantu redakan tenggorokan & napas lebih lega, anti-inflamasi alami, serta sumber energi & stamina harian. Cocok untuk konsumsi rutin seluruh keluarga.',
+        name: 'Multiflora Jawa',
+        waGreeting: 'Kak aku mau ikut Pre-Order Madu Multiflora Jawa...',
+        desc: 'Madu Multi Jawa dari aneka nektar tumbuhan rasanya manis segerrr, panen langsung dari Jawa Tengah. Perpaduan nektar alami pilihan: antioksidan tinggi bantu lawan radikal bebas, dukung daya tahan tubuh, bantu redakan tenggorokan & napas lebih lega, anti-inflamasi alami, serta sumber energi & stamina harian. Cocok untuk konsumsi rutin seluruh keluarga.',
         options: [
             { id: 'konsumen',    label: 'Konsumen/Eceran: Rp 150.000/kg (1–4kg)',        price: 150000, min: 1,  max: 4 },
             { id: 'marketer',    label: 'Marketer: Rp 95.000/kg (min. 1kg)',              price: 95000,  min: 1,  max: 4 },
@@ -875,7 +875,7 @@ function renderPOContent() {
 
         el.innerHTML = `
             <div class="section-label">OPEN PRE-ORDER</div>
-            <h2 class="section-title">🍯 ${p.name.toUpperCase()} ${p.id === 2 ? '(JAWA - PURWODADI)' : p.id === 0 ? '(SUMATRA TO JOGJA)' : '(SUMATRA TO JOGJA)'} 🍯</h2>
+            <h2 class="section-title">🍯 ${p.name.toUpperCase()} ${p.id === 2 ? '(JAWA)' : p.id === 0 ? '(SUMATRA TO JOGJA)' : '(SUMATRA TO JOGJA)'} 🍯</h2>
             <p class="about-text">${p.desc}</p>
             <p class="about-text"><strong>Kenapa pilih Madu Sabrina?</strong></p>
             <div class="feature-list">${benefitsHTML}</div>
