@@ -3124,3 +3124,12 @@ g
     0%, 100% { opacity: 0; transform: translateX(-50%) scaleY(0.5); }
     50%       { opacity: 1; transform: translateX(-50%) scaleY(1); }
 }
+
+/* Supaya konten section tidak ketutupan navbar fixed pas di-scroll via menu */
+section[id] {
+    scroll-margin-top: 130px; /* sesuaikan kalau masih kurang/lebih */
+}
+
+#home {
+    scroll-margin-top: 0; /* hero biarkan full, dia sendiri sudah full height */
+}
