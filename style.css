@@ -120,7 +120,7 @@ body.loaded .loading-screen {
 /* ── NAVBAR — Luxury Refined ── */
 .site-header {
     position: fixed;
-    top: 0;
+    top: 38px;
     left: 0;
     width: 100%;
     z-index: 1000;
