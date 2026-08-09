@@ -2582,6 +2582,11 @@ g
 
 /* ── ANNOUNCEMENT BAR ── */
 .announcement-bar {
+    position: fixed;      /* tambahkan ini */
+    top: 0;                /* tambahkan ini */
+    left: 0;                /* tambahkan ini */
+    width: 100%;            /* tambahkan ini */
+    z-index: 1002;          /* naikkan, biar di atas header (yang z-index 1000/1001) */
     background: linear-gradient(90deg, var(--deep-brown) 0%, #3a2518 50%, var(--deep-brown) 100%);
     color: rgba(255,255,255,0.9);
     font-size: 12.5px;
@@ -2592,8 +2597,6 @@ g
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(212,165,116,0.2);
-    position: relative;
-    z-index: 1001;
 }
 
 .announcement-inner {
